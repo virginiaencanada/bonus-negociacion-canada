@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Negociar Salario en Canadá, Virginia Camacho</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --red:#C8302A; --red-light:#fdf2f1; --red-border:#f5c6c4;
+  --sidebar-bg:#1a1a1a; --sidebar-w:252px;
+  --bg:#ffffff; --white:#ffffff;
+  --text:#1a1a1a; --muted:#5a5a5a; --dim:#aaaaaa; --border:#e8e6e0;
+  --green:#1a6b5a; --green-light:#edf7f4;
+  --amber:#92600a; --amber-light:#fdf6e8;
+  --font-body:'Plus Jakarta Sans',sans-serif;
+  --font-display:'Playfair Display',serif;
+}
+html { color-scheme: light only; }
+body { font-family:var(--font-body); background:#ffffff; color:var(--text); display:flex; min-height:100vh; font-size:16px; line-height:1.65; }
+
+/* SIDEBAR */
+.sidebar { width:var(--sidebar-w); background:var(--sidebar-bg); position:fixed; top:0; left:0; height:100vh; overflow-y:auto; z-index:100; display:flex; flex-direction:column; }
+.sidebar-brand { padding:26px 22px 22px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.sidebar-brand .maple { font-size:22px; margin-bottom:10px; display:block; }
+.sidebar-brand h1 { font-family:var(--font-display); font-size:18px; font-weight:700; color:#fff; line-height:1.25; }
+.sidebar-brand p { font-size:11px; color:rgba(255,255,255,0.35); margin-top:5px; line-height:1.5; }
+.nav-group { padding:14px 0 4px; }
+.nav-group-label { font-size:9.5px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.22); padding:0 22px 8px; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:10px 22px; cursor:pointer; transition:background 0.13s; border-left:3px solid transparent; color:rgba(255,255,255,0.48); font-size:13.5px; font-weight:400; user-select:none; }
+.nav-item:hover { background:rgba(255,255,255,0.05); color:rgba(255,255,255,0.85); }
+.nav-item.active { background:rgba(200,48,42,0.14); border-left-color:var(--red); color:#fff; font-weight:600; }
+.nav-item .num { font-size:10px; font-weight:700; color:rgba(255,255,255,0.18); min-width:18px; }
+.nav-item.active .num { color:var(--red); }
+.nav-sub { overflow:hidden; max-height:0; transition:max-height 0.25s ease; }
+.nav-sub.open { max-height:500px; }
+.nav-sub-item { display:flex; align-items:center; gap:8px; padding:7px 22px 7px 42px; cursor:pointer; font-size:12.5px; color:rgba(255,255,255,0.35); transition:all 0.13s; border-left:3px solid transparent; }
+.nav-sub-item:hover { color:rgba(255,255,255,0.75); background:rgba(255,255,255,0.03); }
+.nav-sub-item.active { color:var(--red); border-left-color:var(--red); background:rgba(200,48,42,0.08); }
+.nav-sub-item::before { content:'·'; font-size:16px; opacity:0.4; }
+.sidebar-footer { margin-top:auto; padding:18px 22px; border-top:1px solid rgba(255,255,255,0.07); }
+.sidebar-footer .by { font-size:12px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:6px; }
+.sidebar-footer .note { font-size:10px; color:rgba(255,255,255,0.2); line-height:1.6; }
+
+/* MAIN */
+.main { margin-left:var(--sidebar-w); flex:1; min-height:100vh; background:#ffffff; }
+.topbar { background:var(--white); border-bottom:1px solid var(--border); padding:0 48px; height:58px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50; }
+.topbar-crumb { font-size:14px; color:var(--muted); }
+.topbar-crumb strong { color:var(--text); font-weight:700; }
+.topbar-right { display:flex; align-items:center; gap:12px; }
+.topbar-by { font-size:12.5px; color:var(--muted); }
+.topbar-by strong { color:var(--text); font-weight:600; }
+.topbar-back { display:none; align-items:center; gap:7px; font-size:13px; font-weight:600; color:var(--red); cursor:pointer; padding:5px 12px; border-radius:8px; border:1.5px solid var(--red-border); background:var(--red-light); transition:all 0.13s; }
+.topbar-back:hover { background:var(--red); color:#fff; }
+.topbar-back.show { display:flex; }
+.topbar-pill { font-size:11.5px; font-weight:600; background:var(--red-light); color:var(--red); border:1px solid var(--red-border); padding:5px 14px; border-radius:20px; }
+.content { padding:48px 48px 80px; max-width:980px; background:#ffffff; }
+
+/* VIEWS */
+.view { display:none; }
+.view.active { display:block; }
+
+/* TYPOGRAPHY */
+.mod-eyebrow { font-size:11.5px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); margin-bottom:10px; }
+.mod-title { font-family:var(--font-display); font-size:40px; font-weight:800; color:var(--text); line-height:1.15; margin-bottom:14px; }
+.mod-title span { color:var(--red); }
+.mod-sub { font-size:17px; color:var(--muted); max-width:600px; line-height:1.7; margin-bottom:36px; }
+.section-title { font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--text); margin-bottom:8px; }
+.section-sub { font-size:16px; color:var(--muted); margin-bottom:26px; line-height:1.65; }
+
+/* CARDS */
+.card { background:var(--white); border:1px solid var(--border); border-radius:16px; padding:32px; margin-bottom:24px; }
+.card-title { font-family:var(--font-display); font-size:22px; font-weight:700; color:var(--text); margin-bottom:20px; }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; }
+.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+
+/* STAT */
+.stat-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:26px 22px; }
+.stat-num { font-family:var(--font-display); font-size:36px; font-weight:800; color:var(--red); margin-bottom:6px; }
+.stat-label { font-size:14px; color:var(--muted); }
+
+/* BADGES */
+.badge { display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; padding:4px 11px; border-radius:6px; text-transform:uppercase; letter-spacing:0.04em; }
+.badge-red { background:var(--red-light); color:var(--red); border:1px solid var(--red-border); }
+.badge-green { background:var(--green-light); color:var(--green); border:1px solid #b8e0d8; }
+.badge-amber { background:var(--amber-light); color:var(--amber); border:1px solid #f0d896; }
+.badge-blue { background:#e8f0fe; color:#1d4ed8; border:1px solid #bfcffb; }
+
+/* ALERTS */
+.alert { border-radius:12px; padding:16px 20px; font-size:15px; line-height:1.65; margin-bottom:22px; display:flex; gap:12px; }
+.alert-icon { font-size:16px; flex-shrink:0; margin-top:2px; }
+.alert-warn { background:var(--amber-light); border:1px solid #f0d896; color:var(--amber); }
+.alert-info { background:#e8f0fe; border:1px solid #bfcffb; color:#1d4ed8; }
+.alert-green { background:var(--green-light); border:1px solid #b8e0d8; color:var(--green); }
+
+/* PROVINCE CARDS */
+.prov-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:36px; }
+.prov-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:26px 20px; cursor:pointer; transition:all 0.15s; text-align:center; }
+.prov-card:hover { border-color:var(--red); box-shadow:0 4px 20px rgba(200,48,42,0.1); transform:translateY(-2px); }
+.prov-avatar { width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:800; color:#fff; margin:0 auto 14px; font-family:var(--font-display); }
+.prov-name { font-size:16px; font-weight:700; color:var(--text); margin-bottom:8px; }
+.prov-badge { display:inline-block; font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:5px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px; }
+.prov-badge.west { background:#e8f4fd; color:#1a5a8a; }
+.prov-badge.central { background:#f0edf8; color:#5a3a8a; }
+.prov-badge.atlantic { background:var(--green-light); color:var(--green); }
+.prov-badge.prairie { background:var(--amber-light); color:var(--amber); }
+.prov-meta { font-size:13px; color:var(--muted); }
+
+/* PROVINCE DETAIL */
+.prov-detail-header { display:flex; align-items:center; gap:20px; margin-bottom:20px; }
+.prov-detail-avatar { width:64px; height:64px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; font-weight:800; color:#fff; font-family:var(--font-display); flex-shrink:0; }
+.prov-detail-title { font-family:var(--font-display); font-size:34px; font-weight:800; color:var(--text); }
+.prov-detail-meta { display:flex; align-items:center; gap:10px; margin-top:6px; }
+
+/* INDUSTRY CARDS GRID */
+.industry-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
+.industry-card { background:var(--white); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:all 0.15s; cursor:pointer; }
+.industry-card:hover { border-color:var(--red); box-shadow:0 2px 12px rgba(200,48,42,0.08); }
+.industry-card.open { border-color:var(--red); }
+.industry-card-header { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:20px; }
+.industry-card-header-left { display:flex; align-items:center; gap:10px; }
+.industry-tag { font-size:11px; font-weight:700; padding:4px 10px; border-radius:6px; text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap; }
+.industry-name-card { font-size:16px; font-weight:700; color:var(--text); }
+.industry-card-preview { display:flex; gap:8px; align-items:center; padding:0 20px 16px; }
+.industry-card-range { font-size:12.5px; font-weight:600; }
+.industry-card-chevron { font-size:11px; color:var(--dim); transition:transform 0.2s; flex-shrink:0; }
+.industry-card.open .industry-card-chevron { transform:rotate(180deg); color:var(--red); }
+.industry-card-body { max-height:0; overflow:hidden; transition:max-height 0.3s ease; border-top:0px solid var(--border); }
+.industry-card.open .industry-card-body { max-height:400px; border-top:1px solid var(--border); }
+.industry-card-table { padding:16px 20px 20px; }
+.level-row-card { display:grid; grid-template-columns:1fr 64px 64px 64px; align-items:center; padding:9px 0; border-bottom:1px solid var(--border); }
+.level-row-card:last-child { border-bottom:none; padding-bottom:0; }
+.level-row-card.header { padding:6px 0 8px; }
+.level-name-card { font-size:14px; font-weight:500; color:var(--text); }
+.level-label-card { font-size:10px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; text-align:right; }
+.sal-low { font-size:14px; color:var(--muted); text-align:right; }
+.sal-mid { font-size:14px; font-weight:700; color:var(--amber); text-align:right; }
+.sal-high { font-size:14px; font-weight:700; color:var(--green); text-align:right; }
+
+/* TABLE */
+.table-wrap { overflow-x:auto; border-radius:12px; border:1px solid var(--border); }
+table { width:100%; border-collapse:collapse; font-size:14.5px; }
+thead tr { background:var(--bg); }
+th { padding:12px 18px; text-align:left; font-size:11px; font-weight:700; color:var(--muted); letter-spacing:0.07em; text-transform:uppercase; white-space:nowrap; }
+td { padding:13px 18px; border-top:1px solid var(--border); }
+tr:hover td { background:#faf9f6; }
+
+/* FILTER */
+.filter-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+.filter-label { font-size:13px; font-weight:600; color:var(--muted); min-width:60px; }
+.filter-btn { font-size:13.5px; font-weight:500; padding:7px 16px; border-radius:8px; border:1.5px solid var(--border); background:var(--white); color:var(--muted); cursor:pointer; transition:all 0.13s; font-family:var(--font-body); }
+.filter-btn:hover { border-color:var(--red); color:var(--red); }
+.filter-btn.active { background:var(--red); color:#fff; border-color:var(--red); font-weight:600; }
+
+/* ACCORDION */
+.acc { border:1px solid var(--border); border-radius:13px; overflow:hidden; margin-bottom:10px; background:var(--white); }
+.acc-head { display:flex; align-items:center; justify-content:space-between; padding:18px 24px; cursor:pointer; transition:background 0.13s; gap:14px; }
+.acc-head:hover { background:#faf9f6; }
+.acc-head h3 { font-size:15.5px; font-weight:600; color:var(--text); line-height:1.4; }
+.acc-icon { width:26px; height:26px; border-radius:50%; background:var(--bg); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:15px; color:var(--muted); flex-shrink:0; transition:all 0.2s; font-weight:700; }
+.acc.open .acc-icon { background:var(--red); border-color:var(--red); color:#fff; transform:rotate(45deg); }
+.acc-body { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+.acc.open .acc-body { max-height:800px; }
+.acc-content { padding:20px 24px 26px; font-size:15px; color:var(--muted); line-height:1.75; border-top:1px solid var(--border); }
+
+/* COMPARE */
+.compare-row { display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid var(--border); border-radius:13px; overflow:hidden; margin-bottom:14px; }
+.cmp-side { padding:22px 24px; background:var(--white); }
+.cmp-side.right { background:var(--bg); border-left:1px solid var(--border); }
+.cmp-side-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; }
+.cmp-label-bad { color:var(--red); }
+.cmp-label-good { color:var(--green); }
+.cmp-quote { font-size:16px; font-style:italic; color:var(--text); font-weight:500; margin-bottom:10px; }
+.cmp-note { font-size:14px; color:var(--muted); line-height:1.65; }
+
+/* SCRIPT BOX */
+.script-box { background:var(--white); border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:20px; }
+.script-head { background:var(--bg); padding:15px 24px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.script-title { font-size:16px; font-weight:700; color:var(--text); }
+.script-body { padding:26px; }
+.script-meta { display:grid; grid-template-columns:1fr 1fr; gap:13px; margin-bottom:20px; padding:16px; background:var(--bg); border-radius:10px; }
+.script-meta-row { font-size:13.5px; color:var(--muted); line-height:1.55; }
+.script-meta-row strong { color:var(--text); font-weight:700; display:block; font-size:10px; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:3px; }
+.script-text { background:var(--red-light); border:1px solid var(--red-border); border-left:4px solid var(--red); border-radius:10px; padding:20px 22px; font-size:15.5px; color:var(--text); line-height:1.8; font-style:italic; }
+
+/* ERROR CARDS */
+.error-card { background:var(--white); border:1px solid var(--border); border-radius:16px; padding:32px; margin-bottom:20px; position:relative; overflow:hidden; }
+.error-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--red); }
+.error-num { font-family:var(--font-display); font-size:52px; font-weight:800; color:var(--border); position:absolute; top:16px; right:24px; line-height:1; pointer-events:none; }
+.error-title { font-size:18px; font-weight:700; color:var(--text); margin-bottom:12px; line-height:1.3; padding-right:64px; }
+.error-body { font-size:15px; color:var(--muted); line-height:1.75; margin-bottom:20px; }
+.action-box { background:var(--red-light); border:1px solid var(--red-border); border-radius:10px; padding:16px 20px; }
+.action-box-label { font-size:10px; font-weight:800; color:var(--red); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; }
+.action-box p { font-size:14.5px; color:#9a2020; line-height:1.65; margin:0; }
+
+/* GLOSSARY */
+.gloss-item { padding:20px 0; border-bottom:1px solid var(--border); }
+.gloss-item:last-child { border-bottom:none; }
+.gloss-term { font-size:17px; font-weight:700; color:var(--red); margin-bottom:5px; }
+.gloss-def { font-size:15px; color:var(--muted); line-height:1.7; }
+
+/* CHECKLIST */
+.check-list { list-style:none; }
+.check-list li { display:flex; gap:14px; padding:13px 0; border-bottom:1px solid var(--border); font-size:15px; color:var(--muted); align-items:flex-start; }
+.check-list li:last-child { border-bottom:none; }
+.check-box { width:20px; height:20px; border:2px solid var(--border); border-radius:6px; flex-shrink:0; margin-top:2px; cursor:pointer; transition:all 0.13s; display:flex; align-items:center; justify-content:center; font-size:11px; color:transparent; }
+.check-box.checked { background:var(--green); border-color:var(--green); color:#fff; }
+
+/* OFFER ITEMS */
+.offer-item { display:flex; align-items:flex-start; gap:16px; padding:18px 0; border-bottom:1px solid var(--border); }
+.offer-item:last-child { border-bottom:none; }
+.offer-icon { width:42px; height:42px; border-radius:10px; background:var(--bg); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+.offer-term { font-size:15.5px; font-weight:700; color:var(--text); margin-bottom:4px; }
+.offer-def { font-size:14px; color:var(--muted); line-height:1.65; }
+
+/* REDFLAG */
+.redflag-item { display:flex; gap:15px; padding:18px 0; border-bottom:1px solid var(--border); }
+.redflag-item:last-child { border-bottom:none; }
+.redflag-icon { font-size:20px; flex-shrink:0; margin-top:2px; }
+.redflag-title { font-size:15.5px; font-weight:700; color:var(--text); margin-bottom:5px; }
+.redflag-why { font-size:14px; color:var(--muted); line-height:1.65; }
+
+/* SIGNAL CARDS */
+.signal-card { background:var(--white); border-radius:14px; padding:26px; border:1px solid var(--border); }
+.signal-card.green { border-top:3px solid var(--green); }
+.signal-card.red { border-top:3px solid var(--red); }
+.signal-card-title { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; margin-bottom:16px; }
+.signal-card.green .signal-card-title { color:var(--green); }
+.signal-card.red .signal-card-title { color:var(--red); }
+.signal-list { list-style:none; }
+.signal-list li { padding:10px 0; border-bottom:1px solid var(--border); font-size:14.5px; color:var(--muted); display:flex; gap:10px; }
+.signal-list li:last-child { border-bottom:none; }
+.signal-list li::before { content:attr(data-icon); font-size:13px; flex-shrink:0; margin-top:2px; }
+
+/* DECISION */
+.decision-q { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:22px 24px; margin-bottom:12px; }
+.decision-q-text { font-size:15.5px; font-weight:600; color:var(--text); margin-bottom:14px; }
+.decision-opts { display:flex; gap:10px; flex-wrap:wrap; }
+.decision-opt { padding:8px 18px; border-radius:8px; font-size:13.5px; font-weight:600; border:1.5px solid var(--border); cursor:pointer; }
+.decision-opt.yes { border-color:#b8e0d8; color:var(--green); background:var(--green-light); }
+.decision-opt.no { border-color:var(--red-border); color:var(--red); background:var(--red-light); }
+
+/* RANGE BAR */
+.range-indicator { display:flex; gap:4px; height:5px; border-radius:4px; overflow:hidden; margin-bottom:10px; }
+.ri-low { background:var(--border); flex:1; }
+.ri-mid { background:var(--amber); flex:1; }
+.ri-high { background:var(--green); flex:1; }
+
+/* WELCOME SCREEN */
+.welcome-hero { background:var(--sidebar-bg); border-radius:20px; padding:48px; margin-bottom:32px; color:#fff; position:relative; overflow:hidden; }
+.welcome-hero::after { content:'🍁'; position:absolute; right:40px; top:30px; font-size:80px; opacity:0.08; }
+.welcome-tag { font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); margin-bottom:14px; }
+.welcome-title { font-family:var(--font-display); font-size:38px; font-weight:800; color:#fff; line-height:1.15; margin-bottom:16px; }
+.welcome-sub { font-size:17px; color:rgba(255,255,255,0.65); max-width:560px; line-height:1.7; margin-bottom:28px; }
+.welcome-modules { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.welcome-mod { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px 20px; cursor:pointer; transition:all 0.15s; }
+.welcome-mod:hover { background:rgba(200,48,42,0.2); border-color:rgba(200,48,42,0.4); }
+.welcome-mod-num { font-size:10px; font-weight:700; color:var(--red); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; }
+.welcome-mod-title { font-size:14px; font-weight:600; color:#fff; line-height:1.35; }
+
+/* GUIDE LINK */
+.guide-link { display:flex; align-items:center; gap:14px; background:var(--amber-light); border:1px solid #f0d896; border-radius:12px; padding:18px 22px; margin-bottom:12px; }
+.guide-link-icon { font-size:24px; flex-shrink:0; }
+.guide-link-chapter { font-size:11px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:3px; }
+.guide-link-text { font-size:14.5px; color:#6b4500; line-height:1.5; }
+
+/* COL LAYOUT */
+select { background:var(--white); border:1.5px solid var(--border); color:var(--text); padding:10px 16px; border-radius:10px; font-family:var(--font-body); font-size:14.5px; font-weight:500; cursor:pointer; outline:none; }
+select:focus { border-color:var(--red); }
+strong { color:var(--text); font-weight:600; }
+p { margin-bottom:10px; }
+p:last-child { margin-bottom:0; }
+
+/* ── MOBILE ─────────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 9px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.hamburger svg { display: block; }
+.sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+.sidebar-overlay.open { display: block; }
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 100;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .topbar { padding: 0 16px; }
+  .topbar-by { font-size: 11px; }
+  .hamburger { display: flex; }
+  .content { padding: 24px 16px 60px; background:#ffffff; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .prov-grid { grid-template-columns: repeat(2, 1fr); }
+  .industry-grid { grid-template-columns: 1fr; }
+  .compare-row { grid-template-columns: 1fr; }
+  .cmp-side.right { border-left: none; border-top: 1px solid var(--border); }
+  .script-meta { grid-template-columns: 1fr; }
+  .welcome-modules { grid-template-columns: 1fr; }
+  .mod-title { font-size: 28px; }
+  .mod-sub { font-size: 15px; }
+  .welcome-title { font-size: 28px; }
+  .welcome-hero { padding: 28px 20px; }
+  .welcome-hero::after { display: none; }
+  .topbar-pill { display: none; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <span class="maple">🍁</span>
+    <h1>Negociar<br>Salario en<br>Canadá</h1>
+    <p>Complemento estratégico de la Guía de Códigos Culturales</p>
+  </div>
+  <nav id="nav-root"></nav>
+  <div class="sidebar-footer">
+    <div class="by">Hecho por Virginia Camacho</div>
+    <div class="note">Rangos orientativos 2025-2026.</div>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="hamburger" onclick="toggleSidebar()" aria-label="Menú">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <rect width="18" height="2" rx="1" fill="#1a1a1a"/>
+          <rect y="6" width="18" height="2" rx="1" fill="#1a1a1a"/>
+          <rect y="12" width="18" height="2" rx="1" fill="#1a1a1a"/>
+        </svg>
+      </div>
+      <span class="topbar-crumb" id="tbar-text"><strong>Inicio</strong></span>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-by">Hecho por <strong>Virginia Camacho</strong></span>
+      <span class="topbar-back" id="back-btn" onclick="goBack()">← Volver</span>
+      <span class="topbar-pill">Canadá 2026</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- WELCOME -->
+    <div class="view active" id="v-welcome">
+      <div class="welcome-hero">
+        <div class="welcome-tag">Complemento de la Guía de Códigos Culturales y Financieros</div>
+        <div class="welcome-title">Negociar Salario<br>en Canadá</div>
+        <div class="welcome-sub">La herramienta práctica para aplicar lo que aprendiste en la guía. Rangos reales, scripts palabra por palabra y la calculadora de impuestos por provincia.</div>
+        <div class="welcome-modules">
+          <div class="welcome-mod" onclick="navTo('dashboard','dashboard')"><div class="welcome-mod-num">01</div><div class="welcome-mod-title">¿Cuánto puedes pedir? Rangos por provincia</div></div>
+          <div class="welcome-mod" onclick="navTo('industrias','industrias')"><div class="welcome-mod-num">02</div><div class="welcome-mod-title">¿Cuánto puedes pedir? Rangos por industria</div></div>
+          <div class="welcome-mod" onclick="navTo('m2','m2-estilos')"><div class="welcome-mod-num">03</div><div class="welcome-mod-title">Cómo se negocia en Canadá</div></div>
+          <div class="welcome-mod" onclick="navTo('m3','m3-componentes')"><div class="welcome-mod-num">04</div><div class="welcome-mod-title">Cómo leer una oferta</div></div>
+          <div class="welcome-mod" onclick="navTo('m4','m4')"><div class="welcome-mod-num">05</div><div class="welcome-mod-title">Errores caros de inmigrantes</div></div>
+          <div class="welcome-mod" onclick="navTo('m5','m5-oferta')"><div class="welcome-mod-num">06</div><div class="welcome-mod-title">Scripts y templates</div></div>
+          <div class="welcome-mod" onclick="navTo('m6','m6')"><div class="welcome-mod-num">07</div><div class="welcome-mod-title">Glosario del sistema</div></div>
+          <div class="welcome-mod" onclick="navTo('m7','m7')"><div class="welcome-mod-num">08</div><div class="welcome-mod-title">¿Acepto, negocio o me voy?</div></div>
+          <div class="welcome-mod" onclick="navTo('m8','m8')"><div class="welcome-mod-num">09</div><div class="welcome-mod-title">Empleado vs Contractor</div></div>
+          <div class="welcome-mod" onclick="navTo('m10','m10')"><div class="welcome-mod-num">10</div><div class="welcome-mod-title">Sector público</div></div>
+          <div class="welcome-mod" onclick="navTo('m9','m9')"><div class="welcome-mod-num">11</div><div class="welcome-mod-title">Preguntas reales</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Cómo usar este dashboard</div>
+        <div class="guide-link"><div class="guide-link-icon">📖</div><div><div class="guide-link-chapter">Conexión con la Guía: Capítulo 5</div><div class="guide-link-text">Este dashboard es el complemento práctico del Capítulo 5 (Negociación Salarial) de tu Guía de Códigos Culturales y Financieros. La guía explica el "por qué" del sistema. Este dashboard te da el "cómo" en el momento de acción.</div></div></div>
+        <div class="guide-link"><div class="guide-link-icon">🧮</div><div><div class="guide-link-chapter">Conexión con la Guía: Capítulo 7</div><div class="guide-link-text">La calculadora de impuestos por provincia complementa el Capítulo 7 (Sistema Financiero). Entiende tu neto real antes de aceptar cualquier oferta.</div></div></div>
+        <div class="guide-link"><div class="guide-link-icon">⚖️</div><div><div class="guide-link-chapter">Conexión con la Guía: Capítulo 6</div><div class="guide-link-text">El módulo de Empleado vs Contractor conecta con el Capítulo 6 (Derechos Laborales y EI). Saber tu estatus laboral cambia completamente tus impuestos y protecciones.</div></div></div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD PROVINCIAS -->
+    <div class="view" id="v-dashboard">
+      <div class="mod-eyebrow">Módulo 01</div>
+      <h2 class="mod-title">¿Cuánto puedes <span>pedir?</span></h2>
+      <p class="mod-sub">Selecciona una provincia para ver los rangos reales por industria y nivel. Saber el número antes de negociar es la diferencia entre pedir desde fuerza o desde adivinar.</p>
+      <div class="grid-4" style="margin-bottom:32px;">
+        <div class="stat-card"><div class="stat-num">8</div><div class="stat-label">Provincias cubiertas</div></div>
+        <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Industrias analizadas</div></div>
+        <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Niveles por industria</div></div>
+        <div class="stat-card"><div class="stat-num">2026</div><div class="stat-label">Datos orientativos</div></div>
+      </div>
+      <div class="section-title">Selecciona una provincia</div>
+      <p class="section-sub">Haz click para ver rangos por industria y nivel, más la calculadora de impuestos específica.</p>
+      <div class="prov-grid" id="prov-grid"></div>
+      <div class="card">
+        <div class="card-title">¿Qué significa cada parte del rango?</div>
+        <div class="grid-3">
+          <div><div class="range-indicator"><div class="ri-low" style="flex:3"></div></div><div class="badge badge-red" style="margin:9px 0;">Parte baja</div><p style="font-size:15px;color:var(--muted);line-height:1.65;margin-top:8px;">Primera oferta sin negociar, mercado saturado o poca experiencia en el rol.</p></div>
+          <div><div class="range-indicator"><div style="background:transparent;flex:1"></div><div class="ri-mid" style="flex:3"></div></div><div class="badge badge-amber" style="margin:9px 0;">Parte media</div><p style="font-size:15px;color:var(--muted);line-height:1.65;margin-top:8px;">Experiencia sólida, empresa establecida. Aquí debería llegar la negociación como mínimo.</p></div>
+          <div><div class="range-indicator"><div style="background:transparent;flex:1"></div><div class="ri-high" style="flex:3"></div></div><div class="badge badge-green" style="margin:9px 0;">Parte alta</div><p style="font-size:15px;color:var(--muted);line-height:1.65;margin-top:8px;">Especialización fuerte, empresa top, múltiples opciones. Se llega negociando desde fuerza.</p></div>
+        </div>
+      </div>
+      <div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>Los rangos son datos orientativos para 2025-2026. Los salarios varían por ciudad, empresa y experiencia específica.</span></div>
+    </div>
+
+    <!-- PROVINCE DETAIL -->
+    <div class="view" id="v-province">
+      <div id="prov-detail-content"></div>
+    </div>
+
+    <!-- INDUSTRIAS VIEW -->
+    <div class="view" id="v-industrias">
+      <div class="mod-eyebrow">Módulo 02</div>
+      <h2 class="mod-title">¿Cuánto puedes <span>pedir?</span></h2>
+      <p class="mod-sub">Selecciona una industria para ver los rangos por provincia y nivel. Encuentra dónde está mejor pagada tu especialidad.</p>
+      <div class="filter-row" style="margin-bottom:24px;" id="ind-filter-row"></div>
+      <div id="ind-comparison-content"></div>
+    </div>
+
+    <!-- M2 -->
+    <div class="view" id="v-m2">
+      <div class="mod-eyebrow">Módulo 03</div>
+      <h2 class="mod-title">Cómo se <span>negocia</span> en Canadá</h2>
+      <p class="mod-sub">El sistema tiene reglas no escritas. Conocerlas es la diferencia entre sonar segura y sonar agresiva.</p>
+      <div class="guide-link" style="margin-bottom:24px;"><div class="guide-link-icon">📖</div><div><div class="guide-link-chapter">Capítulo 5 de tu Guía</div><div class="guide-link-text">Este módulo es el complemento práctico del Capítulo 5 (Negociación Salarial) y el I≠I Framework del Capítulo 2. La guía explica por qué el sistema interpreta diferente. Aquí tienes exactamente qué decir.</div></div></div>
+      <div id="m2-content"></div>
+    </div>
+
+    <!-- M3 -->
+    <div class="view" id="v-m3">
+      <div class="mod-eyebrow">Módulo 04</div>
+      <h2 class="mod-title">Cómo leer <span>una oferta</span></h2>
+      <p class="mod-sub">Una oferta no se mide solo por el número. El valor real está en todo lo que lo rodea.</p>
+      <div id="m3-content"></div>
+    </div>
+
+    <!-- M4 -->
+    <div class="view" id="v-m4">
+      <div class="mod-eyebrow">Módulo 05</div>
+      <h2 class="mod-title">Errores <span>caros</span> de inmigrantes</h2>
+      <p class="mod-sub">No son errores de inexperiencia. Son errores de sistema. Nadie te los explicó antes.</p>
+      <div id="m4-content"></div>
+    </div>
+
+    <!-- M5 -->
+    <div class="view" id="v-m5">
+      <div class="mod-eyebrow">Módulo 06</div>
+      <h2 class="mod-title">Scripts y <span>templates</span></h2>
+      <p class="mod-sub">Palabra por palabra. Para que no improvises en el momento de mayor presión.</p>
+      <div class="filter-row" style="margin-bottom:28px;" id="script-filters"></div>
+      <div id="m5-content"></div>
+    </div>
+
+    <!-- M6 GLOSARIO -->
+    <div class="view" id="v-m6">
+      <div class="mod-eyebrow">Módulo 07</div>
+      <h2 class="mod-title">Glosario del <span>sistema</span></h2>
+      <p class="mod-sub">Las palabras que no te explican pero necesitas entender para no perder dinero.</p>
+      <div class="card"><div id="m6-content"></div></div>
+    </div>
+
+    <!-- M7 DECISIÓN -->
+    <div class="view" id="v-m7">
+      <div class="mod-eyebrow">Módulo 08</div>
+      <h2 class="mod-title">¿Acepto, negocio <span>o me voy?</span></h2>
+      <p class="mod-sub">Antes de responder a una oferta, hazte estas preguntas.</p>
+      <div id="m7-content"></div>
+    </div>
+
+    <!-- M8 EMPLEADO VS CONTRACTOR -->
+    <div class="view" id="v-m8">
+      <div class="mod-eyebrow">Módulo 09</div>
+      <h2 class="mod-title">Empleado vs <span>Contractor</span></h2>
+      <p class="mod-sub">Una de las diferencias más caras que nadie explica. Tu estatus laboral cambia todo: impuestos, protecciones, EI y beneficios.</p>
+      <div class="guide-link" style="margin-bottom:24px;"><div class="guide-link-icon">📖</div><div><div class="guide-link-chapter">Capítulo 6 de tu Guía</div><div class="guide-link-text">Este módulo complementa el Capítulo 6 (Derechos Laborales y EI). Si trabajas como contractor sin saberlo, puedes estar perdiendo protecciones y pagando más impuestos de lo necesario.</div></div></div>
+      <div id="m8-content"></div>
+    </div>
+
+    <!-- M10: SECTOR PÚBLICO -->
+    <div class="view" id="v-m10">
+      <div class="mod-eyebrow">Módulo 10</div>
+      <h2 class="mod-title">Sector <span>público</span></h2>
+      <p class="mod-sub">Las reglas del sector público son completamente diferentes al privado. Aquí no se negocia igual, y no saberlo puede costarte puntos de entrada que nunca recuperas.</p>
+      <div id="m10-content"></div>
+    </div>
+
+    <!-- M9: PREGUNTAS REALES -->
+    <div class="view" id="v-m9">
+      <div class="mod-eyebrow">Módulo 11</div>
+      <h2 class="mod-title">Preguntas <span>reales</span></h2>
+      <p class="mod-sub">Preguntas reales. Respuestas directas, sin relleno.</p>
+      <div id="m9-content"></div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+// ============================================================
+// NAV DATA
+// ============================================================
+const navItems = [
+  { id:'welcome', label:'Inicio', num:'00', subs:[] },
+  { id:'dashboard', label:'¿Cuánto puedes pedir? Por provincia', num:'01', subs: provinces_nav() },
+  { id:'industrias', label:'¿Cuánto puedes pedir? Por industria', num:'02', subs:[] },
+  { id:'m2', label:'Cómo se negocia', num:'03', subs:[
+    { id:'m2-estilos', label:'Estilos de negociación' },
+    { id:'m2-frases', label:'Lo que dices vs comunica' },
+    { id:'m2-posicion', label:'Frases que posicionan' },
+    { id:'m2-situaciones', label:'Situaciones comunes' },
+  ]},
+  { id:'m3', label:'Leer una oferta', num:'04', subs:[
+    { id:'m3-componentes', label:'Componentes de una oferta' },
+    { id:'m3-comparador', label:'Comparador de ofertas' },
+    { id:'m3-checklist', label:'Checklist pre-firma' },
+    { id:'m3-redflags', label:'Red flags' },
+  ]},
+  { id:'m4', label:'Errores caros', num:'05', subs:[] },
+  { id:'m5', label:'Scripts y templates', num:'06', subs:[
+    { id:'m5-oferta', label:'Oferta inicial' },
+    { id:'m5-counter', label:'Counteroffer' },
+    { id:'m5-interno', label:'Aumento interno' },
+    { id:'m5-rechazo', label:'Rechazar / aceptar' },
+  ]},
+  { id:'m6', label:'Glosario del sistema', num:'07', subs:[] },
+  { id:'m7', label:'¿Acepto o negocio?', num:'08', subs:[] },
+  { id:'m8', label:'Empleado vs Contractor', num:'09', subs:[] },
+  { id:'m10', label:'Sector público', num:'10', subs:[] },
+  { id:'m9', label:'Preguntas reales', num:'11', subs:[] },
+];
+
+function provinces_nav() {
+  return [
+    {id:'prov-on',label:'Ontario'},{id:'prov-bc',label:'British Columbia'},
+    {id:'prov-ab',label:'Alberta'},{id:'prov-qc',label:'Quebec'},
+    {id:'prov-mb',label:'Manitoba'},{id:'prov-sk',label:'Saskatchewan'},
+    {id:'prov-ns',label:'Nova Scotia'},{id:'prov-nb',label:'New Brunswick'},
+  ];
+}
+
+// ============================================================
+// PROVINCE DATA
+// ============================================================
+const provinces = [
+  { id:'on', name:'Ontario', abbr:'ON', color:'#1d4ed8', region:'Central', industries:[
+    { name:'Tech / Software', tag:'Tech', tc:'#e8f0fe', tt:'#1d4ed8', levels:[
+      {level:'Entry',low:'$55k',mid:'$72k',high:'$90k'},
+      {level:'Intermediate',low:'$85k',mid:'$105k',high:'$130k'},
+      {level:'Specialist',low:'$120k',mid:'$145k',high:'$180k'},
+      {level:'Manager',low:'$140k',mid:'$170k',high:'$210k'}]},
+    { name:'Finance', tag:'Finance', tc:'#fef3c7', tt:'#92400e', levels:[
+      {level:'Entry',low:'$48k',mid:'$60k',high:'$75k'},
+      {level:'Intermediate',low:'$72k',mid:'$92k',high:'$115k'},
+      {level:'Specialist',low:'$100k',mid:'$130k',high:'$165k'},
+      {level:'Manager',low:'$125k',mid:'$155k',high:'$200k'}]},
+    { name:'Healthcare', tag:'Health', tc:'#d1fae5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$45k',mid:'$58k',high:'$72k'},
+      {level:'Intermediate',low:'$65k',mid:'$85k',high:'$105k'},
+      {level:'Specialist',low:'$90k',mid:'$115k',high:'$145k'},
+      {level:'Manager',low:'$110k',mid:'$135k',high:'$165k'}]},
+    { name:'Marketing', tag:'Marketing', tc:'#fce7f3', tt:'#9d174d', levels:[
+      {level:'Entry',low:'$42k',mid:'$52k',high:'$65k'},
+      {level:'Intermediate',low:'$60k',mid:'$78k',high:'$98k'},
+      {level:'Specialist',low:'$85k',mid:'$108k',high:'$140k'},
+      {level:'Manager',low:'$100k',mid:'$128k',high:'$160k'}]},
+    { name:'Operations', tag:'Ops', tc:'#ede9fe', tt:'#5b21b6', levels:[
+      {level:'Entry',low:'$40k',mid:'$50k',high:'$62k'},
+      {level:'Intermediate',low:'$58k',mid:'$75k',high:'$92k'},
+      {level:'Specialist',low:'$78k',mid:'$98k',high:'$125k'},
+      {level:'Manager',low:'$85k',mid:'$110k',high:'$140k'}]},
+    { name:'Administration', tag:'Admin', tc:'#f1f5f9', tt:'#475569', levels:[
+      {level:'Entry',low:'$38k',mid:'$48k',high:'$60k'},
+      {level:'Intermediate',low:'$52k',mid:'$66k',high:'$82k'},
+      {level:'Specialist',low:'$68k',mid:'$85k',high:'$105k'},
+      {level:'Manager',low:'$80k',mid:'$100k',high:'$125k'}]},
+    { name:'Education', tag:'Edu', tc:'#fff7ed', tt:'#9a3412', levels:[
+      {level:'Entry',low:'$42k',mid:'$52k',high:'$66k'},
+      {level:'Intermediate',low:'$58k',mid:'$74k',high:'$92k'},
+      {level:'Specialist',low:'$75k',mid:'$95k',high:'$118k'},
+      {level:'Manager',low:'$90k',mid:'$112k',high:'$138k'}]},
+    { name:'Construction', tag:'Const.', tc:'#ecfdf5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$45k',mid:'$58k',high:'$72k'},
+      {level:'Intermediate',low:'$65k',mid:'$85k',high:'$108k'},
+      {level:'Specialist',low:'$90k',mid:'$115k',high:'$145k'},
+      {level:'Manager',low:'$105k',mid:'$135k',high:'$165k'}]},
+  ]},
+  { id:'bc', name:'British Columbia', abbr:'BC', color:'#059669', region:'West', industries:[
+    { name:'Tech / Software', tag:'Tech', tc:'#e8f0fe', tt:'#1d4ed8', levels:[
+      {level:'Entry',low:'$55k',mid:'$70k',high:'$88k'},
+      {level:'Intermediate',low:'$85k',mid:'$108k',high:'$135k'},
+      {level:'Specialist',low:'$118k',mid:'$145k',high:'$175k'},
+      {level:'Manager',low:'$135k',mid:'$165k',high:'$200k'}]},
+    { name:'Finance', tag:'Finance', tc:'#fef3c7', tt:'#92400e', levels:[
+      {level:'Entry',low:'$46k',mid:'$58k',high:'$72k'},
+      {level:'Intermediate',low:'$68k',mid:'$88k',high:'$110k'},
+      {level:'Specialist',low:'$95k',mid:'$122k',high:'$155k'},
+      {level:'Manager',low:'$118k',mid:'$148k',high:'$185k'}]},
+    { name:'Healthcare', tag:'Health', tc:'#d1fae5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$46k',mid:'$60k',high:'$74k'},
+      {level:'Intermediate',low:'$68k',mid:'$88k',high:'$110k'},
+      {level:'Specialist',low:'$92k',mid:'$118k',high:'$148k'},
+      {level:'Manager',low:'$112k',mid:'$140k',high:'$170k'}]},
+    { name:'Marketing', tag:'Marketing', tc:'#fce7f3', tt:'#9d174d', levels:[
+      {level:'Entry',low:'$42k',mid:'$53k',high:'$66k'},
+      {level:'Intermediate',low:'$58k',mid:'$75k',high:'$95k'},
+      {level:'Specialist',low:'$82k',mid:'$105k',high:'$135k'},
+      {level:'Manager',low:'$98k',mid:'$124k',high:'$155k'}]},
+    { name:'Operations', tag:'Ops', tc:'#ede9fe', tt:'#5b21b6', levels:[
+      {level:'Entry',low:'$40k',mid:'$51k',high:'$64k'},
+      {level:'Intermediate',low:'$60k',mid:'$78k',high:'$96k'},
+      {level:'Specialist',low:'$80k',mid:'$102k',high:'$128k'},
+      {level:'Manager',low:'$92k',mid:'$118k',high:'$148k'}]},
+    { name:'Administration', tag:'Admin', tc:'#f1f5f9', tt:'#475569', levels:[
+      {level:'Entry',low:'$36k',mid:'$46k',high:'$58k'},
+      {level:'Intermediate',low:'$52k',mid:'$66k',high:'$82k'},
+      {level:'Specialist',low:'$68k',mid:'$86k',high:'$108k'},
+      {level:'Manager',low:'$82k',mid:'$104k',high:'$130k'}]},
+    { name:'Construction', tag:'Const.', tc:'#ecfdf5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$48k',mid:'$62k',high:'$76k'},
+      {level:'Intermediate',low:'$70k',mid:'$92k',high:'$115k'},
+      {level:'Specialist',low:'$95k',mid:'$122k',high:'$152k'},
+      {level:'Manager',low:'$112k',mid:'$142k',high:'$175k'}]},
+    { name:'Education', tag:'Edu', tc:'#fff7ed', tt:'#9a3412', levels:[
+      {level:'Entry',low:'$44k',mid:'$55k',high:'$68k'},
+      {level:'Intermediate',low:'$60k',mid:'$76k',high:'$95k'},
+      {level:'Specialist',low:'$78k',mid:'$98k',high:'$122k'},
+      {level:'Manager',low:'$92k',mid:'$115k',high:'$142k'}]},
+  ]},
+  { id:'ab', name:'Alberta', abbr:'AB', color:'#d97706', region:'West', industries:[
+    { name:'Tech / Software', tag:'Tech', tc:'#e8f0fe', tt:'#1d4ed8', levels:[
+      {level:'Entry',low:'$50k',mid:'$65k',high:'$82k'},
+      {level:'Intermediate',low:'$78k',mid:'$100k',high:'$125k'},
+      {level:'Specialist',low:'$108k',mid:'$135k',high:'$165k'},
+      {level:'Manager',low:'$128k',mid:'$158k',high:'$192k'}]},
+    { name:'Finance', tag:'Finance', tc:'#fef3c7', tt:'#92400e', levels:[
+      {level:'Entry',low:'$44k',mid:'$56k',high:'$70k'},
+      {level:'Intermediate',low:'$65k',mid:'$84k',high:'$105k'},
+      {level:'Specialist',low:'$92k',mid:'$118k',high:'$150k'},
+      {level:'Manager',low:'$112k',mid:'$142k',high:'$178k'}]},
+    { name:'Healthcare', tag:'Health', tc:'#d1fae5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$46k',mid:'$60k',high:'$75k'},
+      {level:'Intermediate',low:'$70k',mid:'$90k',high:'$112k'},
+      {level:'Specialist',low:'$95k',mid:'$120k',high:'$150k'},
+      {level:'Manager',low:'$115k',mid:'$145k',high:'$178k'}]},
+    { name:'Construction', tag:'Const.', tc:'#ecfdf5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$50k',mid:'$65k',high:'$80k'},
+      {level:'Intermediate',low:'$72k',mid:'$95k',high:'$120k'},
+      {level:'Specialist',low:'$98k',mid:'$125k',high:'$158k'},
+      {level:'Manager',low:'$115k',mid:'$145k',high:'$178k'}]},
+    { name:'Operations', tag:'Ops', tc:'#ede9fe', tt:'#5b21b6', levels:[
+      {level:'Entry',low:'$42k',mid:'$54k',high:'$67k'},
+      {level:'Intermediate',low:'$62k',mid:'$80k',high:'$100k'},
+      {level:'Specialist',low:'$82k',mid:'$105k',high:'$132k'},
+      {level:'Manager',low:'$95k',mid:'$120k',high:'$150k'}]},
+    { name:'Marketing', tag:'Marketing', tc:'#fce7f3', tt:'#9d174d', levels:[
+      {level:'Entry',low:'$40k',mid:'$51k',high:'$63k'},
+      {level:'Intermediate',low:'$58k',mid:'$74k',high:'$93k'},
+      {level:'Specialist',low:'$78k',mid:'$100k',high:'$128k'},
+      {level:'Manager',low:'$92k',mid:'$118k',high:'$148k'}]},
+    { name:'Administration', tag:'Admin', tc:'#f1f5f9', tt:'#475569', levels:[
+      {level:'Entry',low:'$36k',mid:'$46k',high:'$57k'},
+      {level:'Intermediate',low:'$50k',mid:'$63k',high:'$78k'},
+      {level:'Specialist',low:'$65k',mid:'$82k',high:'$102k'},
+      {level:'Manager',low:'$78k',mid:'$98k',high:'$122k'}]},
+    { name:'Education', tag:'Edu', tc:'#fff7ed', tt:'#9a3412', levels:[
+      {level:'Entry',low:'$44k',mid:'$55k',high:'$68k'},
+      {level:'Intermediate',low:'$60k',mid:'$76k',high:'$95k'},
+      {level:'Specialist',low:'$78k',mid:'$98k',high:'$122k'},
+      {level:'Manager',low:'$92k',mid:'$115k',high:'$142k'}]},
+  ]},
+  { id:'qc', name:'Quebec', abbr:'QC', color:'#7c3aed', region:'Central', industries:[
+    { name:'Tech / Software', tag:'Tech', tc:'#e8f0fe', tt:'#1d4ed8', levels:[
+      {level:'Entry',low:'$48k',mid:'$62k',high:'$78k'},
+      {level:'Intermediate',low:'$72k',mid:'$92k',high:'$115k'},
+      {level:'Specialist',low:'$100k',mid:'$125k',high:'$155k'},
+      {level:'Manager',low:'$118k',mid:'$148k',high:'$182k'}]},
+    { name:'Finance', tag:'Finance', tc:'#fef3c7', tt:'#92400e', levels:[
+      {level:'Entry',low:'$42k',mid:'$54k',high:'$68k'},
+      {level:'Intermediate',low:'$62k',mid:'$80k',high:'$100k'},
+      {level:'Specialist',low:'$88k',mid:'$112k',high:'$140k'},
+      {level:'Manager',low:'$105k',mid:'$132k',high:'$165k'}]},
+    { name:'Healthcare', tag:'Health', tc:'#d1fae5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$42k',mid:'$54k',high:'$68k'},
+      {level:'Intermediate',low:'$62k',mid:'$80k',high:'$100k'},
+      {level:'Specialist',low:'$85k',mid:'$108k',high:'$135k'},
+      {level:'Manager',low:'$102k',mid:'$128k',high:'$158k'}]},
+    { name:'Education', tag:'Edu', tc:'#fff7ed', tt:'#9a3412', levels:[
+      {level:'Entry',low:'$40k',mid:'$50k',high:'$62k'},
+      {level:'Intermediate',low:'$52k',mid:'$68k',high:'$84k'},
+      {level:'Specialist',low:'$70k',mid:'$88k',high:'$110k'},
+      {level:'Manager',low:'$82k',mid:'$105k',high:'$130k'}]},
+    { name:'Marketing', tag:'Marketing', tc:'#fce7f3', tt:'#9d174d', levels:[
+      {level:'Entry',low:'$38k',mid:'$48k',high:'$60k'},
+      {level:'Intermediate',low:'$55k',mid:'$70k',high:'$88k'},
+      {level:'Specialist',low:'$75k',mid:'$95k',high:'$120k'},
+      {level:'Manager',low:'$88k',mid:'$112k',high:'$140k'}]},
+    { name:'Administration', tag:'Admin', tc:'#f1f5f9', tt:'#475569', levels:[
+      {level:'Entry',low:'$36k',mid:'$45k',high:'$56k'},
+      {level:'Intermediate',low:'$48k',mid:'$61k',high:'$76k'},
+      {level:'Specialist',low:'$62k',mid:'$78k',high:'$98k'},
+      {level:'Manager',low:'$74k',mid:'$94k',high:'$118k'}]},
+    { name:'Construction', tag:'Const.', tc:'#ecfdf5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$42k',mid:'$54k',high:'$68k'},
+      {level:'Intermediate',low:'$60k',mid:'$78k',high:'$98k'},
+      {level:'Specialist',low:'$82k',mid:'$105k',high:'$132k'},
+      {level:'Manager',low:'$98k',mid:'$124k',high:'$155k'}]},
+    { name:'Operations', tag:'Ops', tc:'#ede9fe', tt:'#5b21b6', levels:[
+      {level:'Entry',low:'$36k',mid:'$46k',high:'$57k'},
+      {level:'Intermediate',low:'$52k',mid:'$66k',high:'$82k'},
+      {level:'Specialist',low:'$70k',mid:'$88k',high:'$110k'},
+      {level:'Manager',low:'$82k',mid:'$104k',high:'$130k'}]},
+  ]},
+  { id:'mb', name:'Manitoba', abbr:'MB', color:'#dc2626', region:'Prairie', industries:[
+    { name:'Tech / Software', tag:'Tech', tc:'#e8f0fe', tt:'#1d4ed8', levels:[
+      {level:'Entry',low:'$44k',mid:'$56k',high:'$70k'},
+      {level:'Intermediate',low:'$65k',mid:'$82k',high:'$103k'},
+      {level:'Specialist',low:'$88k',mid:'$112k',high:'$140k'},
+      {level:'Manager',low:'$105k',mid:'$132k',high:'$162k'}]},
+    { name:'Healthcare', tag:'Health', tc:'#d1fae5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$42k',mid:'$54k',high:'$68k'},
+      {level:'Intermediate',low:'$62k',mid:'$80k',high:'$100k'},
+      {level:'Specialist',low:'$85k',mid:'$108k',high:'$135k'},
+      {level:'Manager',low:'$100k',mid:'$126k',high:'$155k'}]},
+    { name:'Education', tag:'Edu', tc:'#fff7ed', tt:'#9a3412', levels:[
+      {level:'Entry',low:'$40k',mid:'$50k',high:'$62k'},
+      {level:'Intermediate',low:'$54k',mid:'$68k',high:'$85k'},
+      {level:'Specialist',low:'$70k',mid:'$88k',high:'$110k'},
+      {level:'Manager',low:'$82k',mid:'$104k',high:'$128k'}]},
+    { name:'Administration', tag:'Admin', tc:'#f1f5f9', tt:'#475569', levels:[
+      {level:'Entry',low:'$35k',mid:'$44k',high:'$55k'},
+      {level:'Intermediate',low:'$46k',mid:'$58k',high:'$72k'},
+      {level:'Specialist',low:'$60k',mid:'$75k',high:'$94k'},
+      {level:'Manager',low:'$72k',mid:'$90k',high:'$112k'}]},
+    { name:'Finance', tag:'Finance', tc:'#fef3c7', tt:'#92400e', levels:[
+      {level:'Entry',low:'$40k',mid:'$51k',high:'$64k'},
+      {level:'Intermediate',low:'$58k',mid:'$74k',high:'$92k'},
+      {level:'Specialist',low:'$78k',mid:'$100k',high:'$125k'},
+      {level:'Manager',low:'$94k',mid:'$118k',high:'$148k'}]},
+    { name:'Marketing', tag:'Marketing', tc:'#fce7f3', tt:'#9d174d', levels:[
+      {level:'Entry',low:'$36k',mid:'$46k',high:'$57k'},
+      {level:'Intermediate',low:'$50k',mid:'$64k',high:'$80k'},
+      {level:'Specialist',low:'$68k',mid:'$86k',high:'$108k'},
+      {level:'Manager',low:'$80k',mid:'$102k',high:'$128k'}]},
+    { name:'Construction', tag:'Const.', tc:'#ecfdf5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$44k',mid:'$56k',high:'$70k'},
+      {level:'Intermediate',low:'$62k',mid:'$80k',high:'$100k'},
+      {level:'Specialist',low:'$84k',mid:'$106k',high:'$132k'},
+      {level:'Manager',low:'$98k',mid:'$124k',high:'$152k'}]},
+    { name:'Operations', tag:'Ops', tc:'#ede9fe', tt:'#5b21b6', levels:[
+      {level:'Entry',low:'$36k',mid:'$46k',high:'$57k'},
+      {level:'Intermediate',low:'$50k',mid:'$64k',high:'$80k'},
+      {level:'Specialist',low:'$68k',mid:'$86k',high:'$108k'},
+      {level:'Manager',low:'$80k',mid:'$102k',high:'$128k'}]},
+  ]},
+  { id:'sk', name:'Saskatchewan', abbr:'SK', color:'#16a34a', region:'Prairie', industries:[
+    { name:'Tech / Software', tag:'Tech', tc:'#e8f0fe', tt:'#1d4ed8', levels:[
+      {level:'Entry',low:'$44k',mid:'$56k',high:'$70k'},
+      {level:'Intermediate',low:'$65k',mid:'$82k',high:'$103k'},
+      {level:'Specialist',low:'$88k',mid:'$110k',high:'$138k'},
+      {level:'Manager',low:'$104k',mid:'$130k',high:'$160k'}]},
+    { name:'Healthcare', tag:'Health', tc:'#d1fae5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$44k',mid:'$56k',high:'$70k'},
+      {level:'Intermediate',low:'$64k',mid:'$82k',high:'$102k'},
+      {level:'Specialist',low:'$88k',mid:'$112k',high:'$140k'},
+      {level:'Manager',low:'$104k',mid:'$130k',high:'$160k'}]},
+    { name:'Construction', tag:'Const.', tc:'#ecfdf5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$45k',mid:'$58k',high:'$72k'},
+      {level:'Intermediate',low:'$66k',mid:'$86k',high:'$108k'},
+      {level:'Specialist',low:'$90k',mid:'$115k',high:'$145k'},
+      {level:'Manager',low:'$106k',mid:'$134k',high:'$165k'}]},
+    { name:'Administration', tag:'Admin', tc:'#f1f5f9', tt:'#475569', levels:[
+      {level:'Entry',low:'$34k',mid:'$43k',high:'$54k'},
+      {level:'Intermediate',low:'$46k',mid:'$58k',high:'$72k'},
+      {level:'Specialist',low:'$60k',mid:'$75k',high:'$94k'},
+      {level:'Manager',low:'$70k',mid:'$88k',high:'$110k'}]},
+    { name:'Finance', tag:'Finance', tc:'#fef3c7', tt:'#92400e', levels:[
+      {level:'Entry',low:'$38k',mid:'$48k',high:'$60k'},
+      {level:'Intermediate',low:'$55k',mid:'$70k',high:'$88k'},
+      {level:'Specialist',low:'$74k',mid:'$94k',high:'$118k'},
+      {level:'Manager',low:'$88k',mid:'$112k',high:'$140k'}]},
+    { name:'Marketing', tag:'Marketing', tc:'#fce7f3', tt:'#9d174d', levels:[
+      {level:'Entry',low:'$34k',mid:'$43k',high:'$54k'},
+      {level:'Intermediate',low:'$47k',mid:'$60k',high:'$75k'},
+      {level:'Specialist',low:'$63k',mid:'$80k',high:'$100k'},
+      {level:'Manager',low:'$74k',mid:'$94k',high:'$118k'}]},
+    { name:'Education', tag:'Edu', tc:'#fff7ed', tt:'#9a3412', levels:[
+      {level:'Entry',low:'$40k',mid:'$50k',high:'$62k'},
+      {level:'Intermediate',low:'$54k',mid:'$68k',high:'$84k'},
+      {level:'Specialist',low:'$70k',mid:'$88k',high:'$108k'},
+      {level:'Manager',low:'$82k',mid:'$102k',high:'$126k'}]},
+    { name:'Operations', tag:'Ops', tc:'#ede9fe', tt:'#5b21b6', levels:[
+      {level:'Entry',low:'$36k',mid:'$45k',high:'$56k'},
+      {level:'Intermediate',low:'$50k',mid:'$63k',high:'$78k'},
+      {level:'Specialist',low:'$66k',mid:'$84k',high:'$105k'},
+      {level:'Manager',low:'$78k',mid:'$98k',high:'$122k'}]},
+  ]},
+  { id:'ns', name:'Nova Scotia', abbr:'NS', color:'#0891b2', region:'Atlantic', industries:[
+    { name:'Tech / Software', tag:'Tech', tc:'#e8f0fe', tt:'#1d4ed8', levels:[
+      {level:'Entry',low:'$42k',mid:'$54k',high:'$68k'},
+      {level:'Intermediate',low:'$62k',mid:'$80k',high:'$100k'},
+      {level:'Specialist',low:'$85k',mid:'$108k',high:'$135k'},
+      {level:'Manager',low:'$100k',mid:'$126k',high:'$155k'}]},
+    { name:'Healthcare', tag:'Health', tc:'#d1fae5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$42k',mid:'$54k',high:'$67k'},
+      {level:'Intermediate',low:'$60k',mid:'$77k',high:'$96k'},
+      {level:'Specialist',low:'$82k',mid:'$104k',high:'$130k'},
+      {level:'Manager',low:'$96k',mid:'$122k',high:'$150k'}]},
+    { name:'Education', tag:'Edu', tc:'#fff7ed', tt:'#9a3412', levels:[
+      {level:'Entry',low:'$38k',mid:'$48k',high:'$60k'},
+      {level:'Intermediate',low:'$52k',mid:'$66k',high:'$82k'},
+      {level:'Specialist',low:'$68k',mid:'$86k',high:'$106k'},
+      {level:'Manager',low:'$80k',mid:'$100k',high:'$124k'}]},
+    { name:'Administration', tag:'Admin', tc:'#f1f5f9', tt:'#475569', levels:[
+      {level:'Entry',low:'$33k',mid:'$42k',high:'$52k'},
+      {level:'Intermediate',low:'$44k',mid:'$56k',high:'$70k'},
+      {level:'Specialist',low:'$58k',mid:'$73k',high:'$91k'},
+      {level:'Manager',low:'$68k',mid:'$86k',high:'$107k'}]},
+    { name:'Finance', tag:'Finance', tc:'#fef3c7', tt:'#92400e', levels:[
+      {level:'Entry',low:'$38k',mid:'$48k',high:'$60k'},
+      {level:'Intermediate',low:'$55k',mid:'$70k',high:'$88k'},
+      {level:'Specialist',low:'$75k',mid:'$95k',high:'$118k'},
+      {level:'Manager',low:'$88k',mid:'$112k',high:'$138k'}]},
+    { name:'Marketing', tag:'Marketing', tc:'#fce7f3', tt:'#9d174d', levels:[
+      {level:'Entry',low:'$34k',mid:'$43k',high:'$54k'},
+      {level:'Intermediate',low:'$47k',mid:'$60k',high:'$75k'},
+      {level:'Specialist',low:'$63k',mid:'$80k',high:'$100k'},
+      {level:'Manager',low:'$74k',mid:'$94k',high:'$116k'}]},
+    { name:'Construction', tag:'Const.', tc:'#ecfdf5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$42k',mid:'$54k',high:'$68k'},
+      {level:'Intermediate',low:'$60k',mid:'$78k',high:'$98k'},
+      {level:'Specialist',low:'$80k',mid:'$102k',high:'$128k'},
+      {level:'Manager',low:'$94k',mid:'$120k',high:'$148k'}]},
+    { name:'Operations', tag:'Ops', tc:'#ede9fe', tt:'#5b21b6', levels:[
+      {level:'Entry',low:'$34k',mid:'$43k',high:'$54k'},
+      {level:'Intermediate',low:'$48k',mid:'$61k',high:'$76k'},
+      {level:'Specialist',low:'$64k',mid:'$81k',high:'$101k'},
+      {level:'Manager',low:'$75k',mid:'$95k',high:'$118k'}]},
+  ]},
+  { id:'nb', name:'New Brunswick', abbr:'NB', color:'#c2410c', region:'Atlantic', industries:[
+    { name:'Tech / Software', tag:'Tech', tc:'#e8f0fe', tt:'#1d4ed8', levels:[
+      {level:'Entry',low:'$40k',mid:'$51k',high:'$64k'},
+      {level:'Intermediate',low:'$58k',mid:'$74k',high:'$93k'},
+      {level:'Specialist',low:'$80k',mid:'$102k',high:'$128k'},
+      {level:'Manager',low:'$95k',mid:'$120k',high:'$148k'}]},
+    { name:'Healthcare', tag:'Health', tc:'#d1fae5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$40k',mid:'$51k',high:'$64k'},
+      {level:'Intermediate',low:'$58k',mid:'$74k',high:'$93k'},
+      {level:'Specialist',low:'$80k',mid:'$102k',high:'$128k'},
+      {level:'Manager',low:'$94k',mid:'$118k',high:'$146k'}]},
+    { name:'Education', tag:'Edu', tc:'#fff7ed', tt:'#9a3412', levels:[
+      {level:'Entry',low:'$36k',mid:'$46k',high:'$58k'},
+      {level:'Intermediate',low:'$50k',mid:'$63k',high:'$78k'},
+      {level:'Specialist',low:'$65k',mid:'$82k',high:'$102k'},
+      {level:'Manager',low:'$76k',mid:'$96k',high:'$118k'}]},
+    { name:'Administration', tag:'Admin', tc:'#f1f5f9', tt:'#475569', levels:[
+      {level:'Entry',low:'$32k',mid:'$40k',high:'$50k'},
+      {level:'Intermediate',low:'$42k',mid:'$53k',high:'$66k'},
+      {level:'Specialist',low:'$55k',mid:'$70k',high:'$87k'},
+      {level:'Manager',low:'$65k',mid:'$82k',high:'$102k'}]},
+    { name:'Construction', tag:'Const.', tc:'#ecfdf5', tt:'#065f46', levels:[
+      {level:'Entry',low:'$40k',mid:'$52k',high:'$65k'},
+      {level:'Intermediate',low:'$58k',mid:'$75k',high:'$94k'},
+      {level:'Specialist',low:'$78k',mid:'$99k',high:'$124k'},
+      {level:'Manager',low:'$92k',mid:'$116k',high:'$144k'}]},
+    { name:'Finance', tag:'Finance', tc:'#fef3c7', tt:'#92400e', levels:[
+      {level:'Entry',low:'$36k',mid:'$46k',high:'$57k'},
+      {level:'Intermediate',low:'$52k',mid:'$66k',high:'$82k'},
+      {level:'Specialist',low:'$70k',mid:'$89k',high:'$110k'},
+      {level:'Manager',low:'$82k',mid:'$104k',high:'$130k'}]},
+    { name:'Marketing', tag:'Marketing', tc:'#fce7f3', tt:'#9d174d', levels:[
+      {level:'Entry',low:'$32k',mid:'$41k',high:'$51k'},
+      {level:'Intermediate',low:'$44k',mid:'$56k',high:'$70k'},
+      {level:'Specialist',low:'$59k',mid:'$75k',high:'$94k'},
+      {level:'Manager',low:'$70k',mid:'$88k',high:'$110k'}]},
+    { name:'Operations', tag:'Ops', tc:'#ede9fe', tt:'#5b21b6', levels:[
+      {level:'Entry',low:'$33k',mid:'$42k',high:'$52k'},
+      {level:'Intermediate',low:'$46k',mid:'$58k',high:'$73k'},
+      {level:'Specialist',low:'$62k',mid:'$78k',high:'$97k'},
+      {level:'Manager',low:'$72k',mid:'$91k',high:'$114k'}]},
+  ]},
+];
+
+// ============================================================
+// NAV
+// ============================================================
+let activeMain = 'welcome', activeSub = 'welcome';
+
+function renderNav() {
+  const nav = document.getElementById('nav-root');
+  nav.innerHTML = '<div class="nav-group"><div class="nav-group-label">Secciones</div>' +
+    navItems.map(item => {
+      const isActive = activeMain === item.id;
+      const subs = item.subs.length ? `<div class="nav-sub${isActive?' open':''}" id="sub-${item.id}">` +
+        item.subs.map(s => `<div class="nav-sub-item${activeSub===s.id?' active':''}" onclick="navSubClick('${item.id}','${s.id}')">${s.label}</div>`).join('') +
+        '</div>' : '';
+      return `<div class="nav-item${isActive?' active':''}" onclick="navMainClick('${item.id}')"><span class="num">${item.num}</span>${item.label}</div>${subs}`;
+    }).join('') + '</div>';
+}
+
+function navMainClick(id) {
+  activeMain = id;
+  if (id === 'dashboard' || id === 'industrias') {
+    activeSub = id;
+  } else {
+    var item = null;
+    for (var i=0;i<navItems.length;i++){if(navItems[i].id===id){item=navItems[i];break;}}
+    activeSub = item && item.subs.length ? item.subs[0].id : id;
+  }
+  renderNav();
+  showView(activeSub);
+  closeSidebar();
+}
+
+function navSubClick(mainId, subId) {
+  activeMain = mainId;
+  activeSub = subId;
+  renderNav();
+  showView(subId);
+  closeSidebar();
+}
+
+function navTo(mainId, subId) {
+  activeMain = mainId;
+  activeSub = subId;
+  renderNav();
+  showView(subId);
+  closeSidebar();
+}
+
+// ============================================================
+// VIEW ROUTING
+// ============================================================
+function showView(subId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const back = document.getElementById('back-btn');
+  back.classList.remove('show');
+
+  if (subId === 'welcome') {
+    document.getElementById('v-welcome').classList.add('active');
+    setTopbar('<strong>Inicio</strong>');
+  } else if (subId === 'dashboard') {
+    document.getElementById('v-dashboard').classList.add('active');
+    setTopbar('<strong>¿Cuánto puedes pedir?</strong> Por provincia');
+  } else if (subId === 'industrias') {
+    renderIndustrias('Tech / Software');
+    document.getElementById('v-industrias').classList.add('active');
+    setTopbar('<strong>¿Cuánto puedes pedir?</strong> Por industria');
+  } else if (subId.startsWith('prov-')) {
+    const pid = subId.replace('prov-','');
+    renderProvinceDetail(pid);
+    document.getElementById('v-province').classList.add('active');
+    back.classList.add('show');
+    const p = provinces.find(x => x.id === pid);
+    setTopbar(p ? p.name : '');
+  } else if (subId.startsWith('m2')) {
+    renderM2(); document.getElementById('v-m2').classList.add('active');
+    setTopbar('<strong>Módulo 03</strong> Cómo se negocia');
+    scrollTo(subId);
+  } else if (subId.startsWith('m3')) {
+    renderM3(); document.getElementById('v-m3').classList.add('active');
+    setTopbar('<strong>Módulo 04</strong> Leer una oferta');
+    scrollTo(subId);
+  } else if (subId === 'm4') {
+    renderM4(); document.getElementById('v-m4').classList.add('active');
+    setTopbar('<strong>Módulo 05</strong> Errores caros');
+  } else if (subId.startsWith('m5')) {
+    renderM5(subId.replace('m5-','')); document.getElementById('v-m5').classList.add('active');
+    setTopbar('<strong>Módulo 06</strong> Scripts y templates');
+  } else if (subId === 'm6') {
+    renderM6(); document.getElementById('v-m6').classList.add('active');
+    setTopbar('<strong>Módulo 07</strong> Glosario');
+  } else if (subId === 'm7') {
+    renderM7(); document.getElementById('v-m7').classList.add('active');
+    setTopbar('<strong>Módulo 08</strong> ¿Acepto o negocio?');
+  } else if (subId === 'm8') {
+    renderM8(); document.getElementById('v-m8').classList.add('active');
+    setTopbar('<strong>Módulo 09</strong> Empleado vs Contractor');
+  } else if (subId === 'm10') {
+    renderM10(); document.getElementById('v-m10').classList.add('active');
+    setTopbar('<strong>Módulo 10</strong> Sector público');
+  } else if (subId === 'm9') {
+    renderM9(); document.getElementById('v-m9').classList.add('active');
+    setTopbar('<strong>Módulo 11</strong> Preguntas reales');
+  }
+  window.scrollTo(0,0);
+}
+
+function setTopbar(html) { document.getElementById('tbar-text').innerHTML = html; }
+function goBack() { navTo('dashboard','dashboard'); }
+function scrollTo(id) { setTimeout(() => { const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }, 120); }
+
+// Province card click
+function openProvince(pid) { activeMain='dashboard'; activeSub='prov-'+pid; renderNav(); showView('prov-'+pid); }
+
+// ============================================================
+// PROVINCE CARDS
+// ============================================================
+function renderProvCards() {
+  const regionLabel = {West:'Oeste',Central:'Central',Prairie:'Prairies',Atlantic:'Atlántico'};
+  const regionClass = {West:'west',Central:'central',Prairie:'prairie',Atlantic:'atlantic'};
+  document.getElementById('prov-grid').innerHTML = provinces.map(p => `
+    <div class="prov-card" onclick="openProvince('${p.id}')">
+      <div class="prov-avatar" style="background:${p.color};">${p.abbr}</div>
+      <div class="prov-name">${p.name}</div>
+      <div><span class="prov-badge ${regionClass[p.region]||'central'}">${regionLabel[p.region]||p.region}</span></div>
+      <div class="prov-meta">${p.industries.length} industrias</div>
+    </div>`).join('');
+}
+
+// ============================================================
+// PROVINCE DETAIL, INDUSTRY CARDS
+// ============================================================
+function renderProvinceDetail(pid) {
+  const p = provinces.find(x => x.id === pid);
+  if (!p) return;
+
+  const industryCards = p.industries.map((ind,idx) => {
+    const entryLow = ind.levels[0].low;
+    const topLevel = ind.levels[ind.levels.length-1];
+    const topHigh = topLevel.high;
+    return `
+    <div class="industry-card" id="icard-${p.id}-${idx}" onclick="toggleICard('icard-${p.id}-${idx}')">
+      <div class="industry-card-header">
+        <div class="industry-card-header-left">
+          <span class="industry-tag" style="background:${ind.tc};color:${ind.tt};">${ind.tag}</span>
+          <span class="industry-name-card">${ind.name}</span>
+        </div>
+        <span class="industry-card-chevron">▼</span>
+      </div>
+      <div class="industry-card-preview">
+        <span class="industry-card-range" style="color:var(--muted);">${entryLow}</span>
+        <span style="font-size:11px;color:var(--dim);">→</span>
+        <span class="industry-card-range" style="color:var(--green);">${topHigh}</span>
+        <span style="font-size:11px;color:var(--dim);margin-left:4px;">rango total</span>
+      </div>
+      <div class="industry-card-body">
+        <div class="industry-card-table">
+          <div class="level-row-card header">
+            <div class="level-label-card">Nivel</div>
+            <div class="level-label-card">Bajo</div>
+            <div class="level-label-card">Medio</div>
+            <div class="level-label-card">Alto</div>
+          </div>
+          ${ind.levels.map(lv => `
+            <div class="level-row-card">
+              <div class="level-name-card">${lv.level}</div>
+              <div class="sal-low">${lv.low}</div>
+              <div class="sal-mid">${lv.mid}</div>
+              <div class="sal-high">${lv.high}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const rate = netRates[pid] || 0.22;
+
+  document.getElementById('prov-detail-content').innerHTML = `
+    <div class="prov-detail-header">
+      <div class="prov-detail-avatar" style="background:${p.color};">${p.abbr}</div>
+      <div>
+        <div class="prov-detail-title">${p.name}</div>
+        <div class="prov-detail-meta">
+          <span class="badge badge-amber">${p.industries.length} industrias</span>
+          <span style="font-size:14px;color:var(--muted);">${p.industries.reduce((a,i)=>a+i.levels.length,0)} rangos</span>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;font-size:14px;margin-bottom:28px;">
+      <span style="color:var(--muted);">Bajo</span>
+      <span style="color:var(--amber);font-weight:700;">Medio</span>
+      <span style="color:var(--green);font-weight:700;">Alto</span>
+    </div>
+    <div class="industry-grid">${industryCards}</div>
+
+    <div class="card" style="margin-top:8px;">
+      <div class="card-title">Calculadora de impuestos, ${p.name}</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <label style="font-size:14px;font-weight:600;color:var(--muted);">Salario bruto:</label>
+          <input type="number" id="pnet-input-${pid}" value="85000" min="30000" max="400000" step="5000"
+            style="width:150px;background:var(--white);border:1.5px solid var(--border);color:var(--text);padding:10px 14px;border-radius:10px;font-family:var(--font-body);font-size:15px;font-weight:600;outline:none;"
+            oninput="calcProvNet('${pid}')" onfocus="this.style.borderColor='var(--red)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          ${(function(){return [55000,70000,85000,100000,120000,150000].map(function(v){return '<button onclick="setProvGross(\''+pid+'\','+v+')" style="font-size:12px;font-weight:600;padding:6px 11px;border-radius:7px;border:1.5px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;font-family:var(--font-body);">$'+(v/1000)+'k</button>';}).join('');})()}
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:12px;">Desglose</div>
+          <div id="pnet-breakdown-${pid}"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="stat-card" style="border-top:3px solid var(--green);">
+            <div class="stat-num" id="pnet-netpay-${pid}" style="font-size:30px;color:var(--green);">$66,300</div>
+            <div class="stat-label">Net pay anual</div>
+          </div>
+          <div class="grid-2" style="gap:10px;">
+            <div class="stat-card"><div style="font-size:20px;font-weight:800;color:var(--text);" id="pnet-biweek-${pid}">$2,550</div><div class="stat-label">Bi-weekly</div></div>
+            <div class="stat-card"><div style="font-size:20px;font-weight:800;color:var(--text);" id="pnet-monthly-${pid}">$5,525</div><div class="stat-label">Por mes</div></div>
+          </div>
+          <div class="grid-2" style="gap:10px;">
+            <div class="stat-card"><div style="font-size:20px;font-weight:800;color:var(--red);" id="pnet-marginal-${pid}">30.5%</div><div class="stat-label">Tasa marginal</div></div>
+            <div class="stat-card"><div style="font-size:20px;font-weight:800;color:var(--amber);" id="pnet-effective-${pid}">${Math.round(rate*100)}%</div><div class="stat-label">Tasa efectiva</div></div>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--dim);margin-top:16px;font-style:italic;">* Estimaciones orientativas 2025-2026. No sustituyen asesoría fiscal.</p>
+    </div>`;
+
+  calcProvNet(pid);
+}
+
+// ============================================================
+// TAX CALC
+// ============================================================
+const netRates = {on:0.22,bc:0.215,ab:0.195,qc:0.265,mb:0.235,sk:0.23,ns:0.25,nb:0.24};
+
+function setProvGross(pid, val) { document.getElementById('pnet-input-'+pid).value = val; calcProvNet(pid); }
+
+function calcProvNet(pid) {
+  const el = document.getElementById('pnet-input-'+pid);
+  if (!el) return;
+  const gross = parseInt(el.value) || 85000;
+  const ei = Math.round(Math.min(gross,63200)*0.0166);
+  const cpp = Math.round(Math.max(0,Math.min(gross,68500)-3500)*0.0595);
+  function fedTax(g) {
+    const b=[[57375,0.15],[114750,0.205],[158519,0.26],[220000,0.29],[Infinity,0.33]];
+    let t=0,prev=0;
+    for(const [lim,r] of b){if(g<=prev)break;t+=(Math.min(g,lim)-prev)*r;prev=lim;}
+    return Math.max(0,Math.round(t-2306));
+  }
+  const provBrackets = {
+    on:[[51446,0.0505],[102894,0.0915],[150000,0.1116],[220000,0.1216],[Infinity,0.1316]],
+    bc:[[45654,0.0506],[91310,0.077],[104835,0.105],[127299,0.1229],[172602,0.147],[240716,0.168],[Infinity,0.205]],
+    ab:[[148269,0.10],[177922,0.12],[237230,0.13],[355845,0.14],[Infinity,0.15]],
+    qc:[[51780,0.14],[103545,0.19],[126000,0.24],[Infinity,0.2575]],
+    mb:[[36842,0.108],[79625,0.1275],[Infinity,0.174]],
+    sk:[[49720,0.105],[142058,0.125],[Infinity,0.145]],
+    ns:[[29590,0.0879],[59180,0.1495],[93000,0.1667],[150000,0.175],[Infinity,0.21]],
+    nb:[[47715,0.094],[95431,0.14],[176756,0.16],[Infinity,0.195]],
+  };
+  const personalAmounts = {on:578,bc:521,ab:2100,qc:2429,mb:195,sk:710,ns:415,nb:445};
+  function calcBrackets(g,brackets,credit){let t=0,prev=0;for(const[lim,r]of brackets){if(g<=prev)break;t+=(Math.min(g,lim)-prev)*r;prev=lim;}return Math.max(0,Math.round(t-(credit||0)));}
+  const fed = fedTax(gross);
+  const prov = calcBrackets(gross, provBrackets[pid]||provBrackets.on, personalAmounts[pid]||500);
+  const total = ei+cpp+fed+prov;
+  const net = gross-total;
+  const eff = ((total/gross)*100).toFixed(1);
+  function getMarg(g,pid){
+    const fM = g<=57375?15:g<=114750?20.5:g<=158519?26:g<=220000?29:33;
+    const pM = {on:g<=51446?5.05:g<=102894?9.15:g<=150000?11.16:g<=220000?12.16:13.16,bc:g<=45654?5.06:g<=91310?7.7:g<=104835?10.5:g<=127299?12.29:g<=172602?14.7:16.8,ab:g<=148269?10:g<=177922?12:g<=237230?13:14,qc:g<=51780?14:g<=103545?19:g<=126000?24:25.75,mb:g<=36842?10.8:g<=79625?12.75:17.4,sk:g<=49720?10.5:g<=142058?12.5:14.5,ns:g<=29590?8.79:g<=59180?14.95:g<=93000?16.67:g<=150000?17.5:21,nb:g<=47715?9.4:g<=95431?14:g<=176756?16:19.5};
+    return (fM+(pM[pid]||9)).toFixed(1);
+  }
+  const fmt = n=>'$'+Math.max(0,n).toLocaleString('en-CA');
+  const rows=[
+    {label:'Salario bruto',val:fmt(gross),bold:false,color:'var(--text)'},
+    {label:'EI deduction',val:'- '+fmt(ei),bold:false,color:'var(--muted)'},
+    {label:'CPP deduction',val:'- '+fmt(cpp),bold:false,color:'var(--muted)'},
+    {label:'Federal tax',val:'- '+fmt(fed),bold:false,color:'var(--muted)'},
+    {label:'Provincial tax ('+pid.toUpperCase()+')',val:'- '+fmt(prov),bold:false,color:'var(--muted)'},
+    {label:'Total deductions',val:'- '+fmt(total),bold:true,color:'var(--red)'},
+    {label:'Net pay anual',val:fmt(net),bold:true,color:'var(--green)'},
+  ];
+  document.getElementById('pnet-breakdown-'+pid).innerHTML = rows.map(function(r){
+    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);">'
+      + '<span style="font-size:15px;color:'+(r.bold?'var(--text)':'var(--muted)')+';">' + r.label + '</span>'
+      + '<span style="font-size:15px;font-weight:'+(r.bold?'700':'500')+';color:'+r.color+';">' + r.val + '</span>'
+      + '</div>';
+  }).join('');
+  document.getElementById('pnet-netpay-'+pid).textContent = fmt(net);
+  document.getElementById('pnet-biweek-'+pid).textContent = fmt(Math.round(net/26));
+  document.getElementById('pnet-monthly-'+pid).textContent = fmt(Math.round(net/12));
+  document.getElementById('pnet-marginal-'+pid).textContent = getMarg(gross,pid)+'%';
+  document.getElementById('pnet-effective-'+pid).textContent = eff+'%';
+}
+
+// ============================================================
+// M2
+// ============================================================
+function renderM2() {
+  if (document.getElementById('m2-content').innerHTML !== '') return;
+  const badPhrases = [
+    {phrase:'"I\'m open"',explain:'Le dices al reclutador que no tienes un número. Llena el vacío con el más bajo que les convenga. Mejor: "I\'m targeting $X, though I\'m open to discussing the full package."'},
+    {phrase:'"Whatever works"',explain:'Suena como que aceptas cualquier cosa. Señal de que no investigaste el mercado o que estás en posición de debilidad.'},
+    {phrase:'"I\'m just happy for the opportunity"',explain:'Esta frase le dice al empleador que puedes aceptar menos. Nunca uses tu gratitud como justificación para no negociar.'},
+    {phrase:'"I can be flexible"',explain:'Sin un ancla de número previo, "flexible" significa que puedes bajar. Úsalo solo después de dar tu número.'},
+    {phrase:'"My current salary is $X"',explain:'En varias provincias no es obligatorio revelarlo. Si lo compartes sin que te lo pidan, das al empleador un techo para no subir.'},
+  ];
+  const accs=[
+    {q:'¿Qué digo cuando preguntan "What are your salary expectations?"',a:'<p><strong>Nunca des tu número primero si puedes evitarlo.</strong></p><div class="script-text" style="margin:14px 0;">"I\'d love to understand the full scope of the role first. Could you give me a sense of the range budgeted for this position?"</div><p>Si insisten:</p><div class="script-text">"Based on my research, I\'m targeting something in the $X-$Y range, though I\'m open to discussing the full package."</div>'},
+    {q:'¿Cómo pido tiempo para revisar una oferta?',a:'<div class="script-text" style="margin-bottom:14px;">"Thank you so much, I\'m genuinely excited. I\'d like to take 24 to 48 hours to review everything carefully. Would [specific day] work?"</div><p><strong>Qué comunica:</strong> Entusiasmo + diligencia profesional. No ansiedad, no duda.</p>'},
+    {q:'¿Cómo hago un counteroffer sin sonar agresivx?',a:'<p>La clave es anclar en mercado, no en preferencia personal.</p><div class="script-text" style="margin:14px 0;">"Thank you for the offer, I\'m really enthusiastic. Based on my experience in [area] and market data for this role in [city], I was hoping we could get closer to $[X]. Is that something we can explore?"</div>'},
+    {q:'¿Cómo pregunto por flexibilidad sin sonar confrontacional?',a:'<div class="script-text">"I\'m really interested in this role and I want to make this work. Is there any flexibility in the offer, either on base or on other elements like signing bonus or vacation?"</div>'},
+  ];
+  document.getElementById('m2-content').innerHTML = `
+    <div class="card" id="m2-estilos">
+      <div class="card-title">Latino vs canadiense: dos estilos</div>
+      <div class="compare-row">
+        <div class="cmp-side"><div class="cmp-side-label cmp-label-bad">Estilo latino típico</div><ul style="list-style:none;font-size:15px;color:var(--muted);">${['Negociar con urgencia personal ("lo necesito porque...")','Explicar mucho antes de dar el número','Evitar el número directo por humildad','Interpretar amabilidad como apertura','Sentir que negociar es ser conflictivx'].map(i=>`<li style="padding:9px 0;border-bottom:1px solid var(--border);">${i}</li>`).join('')}</ul></div>
+        <div class="cmp-side right"><div class="cmp-side-label cmp-label-good">Estilo canadiense profesional</div><ul style="list-style:none;font-size:15px;color:var(--muted);">${['Negociar desde valor de mercado, no necesidad','Dar el número con confianza, justificar brevemente','Ser directo sin ser agresivo','Leer el silencio como parte del proceso','Negociar como proceso normal y esperado'].map(i=>`<li style="padding:9px 0;border-bottom:1px solid var(--border);">${i}</li>`).join('')}</ul></div>
+      </div>
+      <div class="action-box" style="margin-top:20px;"><div class="action-box-label">Lo que esto significa en la práctica</div><p>En Canadá, negociar no es confrontar. Lo que sí notan los reclutadores es cuando alguien no negocia, puede interpretarse como falta de autoconocimiento de mercado.</p></div>
+    </div>
+    <div class="card" id="m2-frases">
+      <div class="card-title">Lo que dices vs lo que realmente comunica</div>
+      <p style="font-size:15px;color:var(--muted);margin-bottom:22px;">Estas frases suenan razonables. En el contexto canadiense pueden costarte dinero.</p>
+      ${badPhrases.map(p=>`<div class="compare-row"><div class="cmp-side"><div class="cmp-side-label cmp-label-bad">Lo que dices</div><div class="cmp-quote">${p.phrase}</div><span class="badge badge-red">Esto te debilita</span></div><div class="cmp-side right"><div class="cmp-side-label cmp-label-bad">Lo que comunica</div><div class="cmp-note">${p.explain}</div></div></div>`).join('')}
+    </div>
+    <div class="card" id="m2-posicion">
+      <div class="card-title">Frases que sí te posicionan</div>
+      <div style="display:flex;flex-direction:column;gap:16px;">${['"Based on my research and my experience in [X], I was targeting something closer to $[Y]."','"I\'m very excited about this role. Is there flexibility on the base to get to $[X]?"','"Could you share the salary band for this role? I want to make sure we\'re aligned."','"I\'d like to take 48 hours to review the offer. Can we reconnect on [day]?"'].map(p=>`<div style="display:flex;gap:14px;align-items:flex-start;"><span class="badge badge-green" style="flex-shrink:0;margin-top:2px;">✓ Posiciona</span><div style="font-size:16px;color:var(--text);font-style:italic;line-height:1.7;">${p}</div></div>`).join('')}</div>
+    </div>
+    <div class="card" id="m2-situaciones">
+      <div class="card-title">Situaciones comunes</div>
+      ${accs.map((a,i)=>`<div class="acc${i===0?' open':''}"><div class="acc-head"><h3>${a.q}</h3><div class="acc-icon">+</div></div><div class="acc-body"><div class="acc-content">${a.a}</div></div></div>`).join('')}
+    </div>`;
+}
+
+// ============================================================
+// M3
+// ============================================================
+function renderM3() {
+  if (document.getElementById('m3-content').innerHTML !== '') return;
+  const offerComps=[
+    {icon:'💰',name:'Base Salary',def:'El salario fijo que recibes independientemente de performance. Es la base de toda tu compensación y afecta CPP, EI y cualquier cálculo de beneficio. Siempre negocia esto primero.'},
+    {icon:'📈',name:'Bonus',def:'Pago adicional atado a performance. Puede ser discrecional (no garantizado) o estructurado (con criterios claros). Pregunta: ¿Cuál fue el porcentaje real pagado en los últimos 2 años?'},
+    {icon:'✍️',name:'Signing Bonus',def:'Pago único al comenzar. Muchos tienen claw-back: debes devolver parte o todo si te vas antes de 12-24 meses. Lee la letra chica.'},
+    {icon:'🏦',name:'RRSP Match',def:'El empleador iguala un % de lo que aportas a tu RRSP. Por ejemplo, 4% match en $80k = $3,200/año extra. Es dinero real que muchos ignoran al comparar ofertas.'},
+    {icon:'🌴',name:'Vacation Days',def:'El mínimo legal varía por provincia (normalmente 2 semanas). Empresas competitivas ofrecen 3-4 semanas. Cada semana extra en $80k vale ~$1,500. Es negociable.'},
+    {icon:'🏥',name:'Health Benefits',def:'Cubre médico, dental, visión. El valor real depende del plan. Pide el resumen: qué cubre, deductible, si incluye dependientes.'},
+    {icon:'🏠',name:'Hybrid/Remote',def:'Tiene valor económico real: menos transporte, más control de tu día. Si te piden 5 días presenciales en Toronto, considera el costo en el salario total.'},
+    {icon:'📋',name:'Probation Period',def:'Período inicial (3-6 meses) con menor protección laboral. Algunos beneficios no aplican hasta después. Pregunta exactamente qué cambia cuando termina.'},
+  ];
+  const checkItems=['Confirmé que el salario base está en el rango de mercado','Leí exactamente qué cubre el plan de benefits (dental, visión, deductible)','Entiendo cuándo termina el probation period y qué cambia después','Sé si el bonus es discrecional o tiene criterios estructurados','Si hay signing bonus, leí las condiciones de devolución (claw-back)','Entendí el RRSP matching y cuándo puedo participar','Confirmé las vacaciones por escrito, no solo verbalmente','Pregunté cuándo es la próxima revisión de performance','Entendí la política de trabajo híbrido o remoto y si está garantizada','El título refleja el nivel real de responsabilidad del rol'];
+  const redFlags=[
+    {flag:'Te presionan para decidir en menos de 24 horas',why:'Una empresa que te presiona en la negociación te presionará en el trabajo. Es señal de cultura.'},
+    {flag:'No pueden decirte el salary band para el rol',why:'Puede significar que no hay estructura salarial clara, lo que complica aumentos futuros.'},
+    {flag:'Los benefits son "competitivos" pero no te dan el plan',why:'"Competitivo" no es una descripción. Necesitas ver el resumen real antes de aceptar.'},
+    {flag:'El contrato tiene cláusulas de no-competencia muy amplias',why:'Una cláusula mal entendida puede limitarte en el mercado laboral de tu ciudad.'},
+    {flag:'Nadie puede explicarte cómo funciona el ciclo de aumentos',why:'Sin proceso claro, los aumentos dependen de relación personal. Eso es riesgo para ti.'},
+  ];
+  const rows=[['Base Salary','$85,000','$85,000'],['Bonus','10% target','10% target'],['Signing Bonus','$5,000 ✓','Ninguno'],['RRSP Match','Ninguno ⚠','4% match ✓'],['Vacaciones','2 semanas ⚠','3 semanas ✓'],['Benefits','Básico','Extendido + dental ✓'],['Trabajo','100% presencial ⚠','Híbrido 2 días ✓'],['Probation','6 meses','3 meses ✓']];
+  const col=(label,idx)=>`<div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;"><div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">${label}</div>${rows.map(r=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:14.5px;"><span style="color:var(--muted);">${r[0]}</span><span style="font-weight:600;color:${r[idx].includes('⚠')?'var(--amber)':r[idx].includes('✓')?'var(--green)':'var(--text)'};">${r[idx]}</span></div>`).join('')}</div>`;
+  document.getElementById('m3-content').innerHTML = `
+    <div class="card" id="m3-componentes"><div class="card-title">Componentes de una oferta</div>${offerComps.map(o=>`<div class="offer-item"><div class="offer-icon">${o.icon}</div><div><div class="offer-term">${o.name}</div><div class="offer-def">${o.def}</div></div></div>`).join('')}</div>
+    <div class="card" id="m3-comparador"><div class="card-title">Comparador de dos ofertas</div><div class="grid-2">${col('Oferta A',1)}${col('Oferta B',2)}</div><div class="action-box" style="margin-top:20px;"><div class="action-box-label">¿Cuál es mejor?</div><p>La Oferta B es mejor en términos reales: mismo base pero con RRSP match (~$3,400/año), una semana extra de vacaciones (~$1,600) y mejor plan de salud. El signing bonus de la Oferta A es dinero de una sola vez.</p></div></div>
+    <div class="card" id="m3-checklist"><div class="card-title">Checklist: antes de aceptar</div><ul class="check-list">${checkItems.map(i=>`<li><div class="check-box"></div><span>${i}</span></li>`).join('')}</ul></div>
+    <div class="card" id="m3-redflags"><div class="card-title" style="color:var(--red);">🚩 Red flags en una oferta</div>${redFlags.map(r=>`<div class="redflag-item"><div class="redflag-icon">🚩</div><div><div class="redflag-title">${r.flag}</div><div class="redflag-why">${r.why}</div></div></div>`).join('')}</div>
+    <div class="card"><div class="card-title">Oferta que suena bien pero puede no convenirte</div>${[{q:'"El salario es menos pero los benefits son increíbles"',a:'Revisa exactamente qué cubre el plan de salud. Algunos planes tienen deductibles altos, cubren poco dental o no incluyen visión. Pide el resumen del plan antes de aceptar.'},{q:'"Te damos título de Manager pero salario de Coordinator"',a:'Un título inflado sin compensación equivalente puede verse bien en el CV pero mal en el mercado. Cuando salgas, ese título elevado genera expectativas salariales que el mercado puede no validar.'},{q:'"Hay muchas oportunidades de crecimiento" sin fechas ni criterios',a:'Pide claridad: "¿Cuándo sería la próxima revisión de performance? ¿Cuáles son los criterios para avanzar?" Si no pueden responder eso, la promesa no es concreta.'}].map((t,i)=>`<div class="acc${i===0?' open':''}"><div class="acc-head"><h3>${t.q}</h3><div class="acc-icon">+</div></div><div class="acc-body"><div class="acc-content">${t.a}</div></div></div>`).join('')}</div>`;
+}
+
+// ============================================================
+// M4
+// ============================================================
+function renderM4() {
+  if (document.getElementById('m4-content').innerHTML !== '') return;
+  const errors=[
+    {num:'01',title:'Aceptar la primera oferta demasiado rápido',body:'La primera oferta casi nunca es la mejor oferta. En Canadá, los empleadores esperan que negocies. No negociar puede costar fácilmente $5,000-$15,000 al año, y ese gap se acumula en cada revisión futura.',action:'Siempre agradece y pide 24-48 horas. Siempre.'},
+    {num:'02',title:'Negociar desde necesidad personal, no desde valor de mercado',body:'"Necesito $X porque mi renta es $Y" no es un argumento en Canadá. Lo que mueve la negociación es: investigación de mercado, tu experiencia concreta y lo que el rol requiere.',action:'Ancla siempre en mercado y en lo que aportas. Nunca en lo que necesitas.'},
+    {num:'03',title:'No entender salary bands',body:'Cada rol tiene un rango interno. Si te ofrecen el mínimo del rango y no lo sabías, perdiste espacio de negociación que existía. Si te ofrecen el máximo, la conversación debe ir por bonus o signing, no por base.',action:'Pregunta siempre: "Could you share the salary band for this role?"'},
+    {num:'04',title:'Confundir amabilidad con falta de margen',body:'En Canadá, los reclutadores son amables incluso cuando van a decirte no. También son amables cuando tienen margen. La amabilidad no es información útil para decidir si negociar.',action:'Negocia independientemente del tono de la conversación.'},
+    {num:'05',title:'No leer benefits antes de aceptar',body:'Dos ofertas con el mismo base pueden tener $8,000-$12,000 de diferencia real cuando incluyes RRSP matching, vacaciones extra y plan de salud.',action:'Pide el resumen completo del plan de benefits antes de firmar.'},
+    {num:'06',title:'Pensar que negociar es ser conflictivx',body:'Este es el error más caro para inmigrantes latinos, especialmente mujeres. La cultura canadiense profesional ve negociar como señal de autoconocimiento y confianza, no como agresividad.',action:'Si no negociaste, nadie va a compensarte por eso después.'},
+    {num:'07',title:'No preguntar qué más es negociable',body:'Si dicen que el base no tiene flexibilidad, la conversación no termina ahí. Signing bonus, vacaciones extra, trabajo remoto, título, fecha de inicio, revisión a los 6 meses, todo puede ser parte de la conversación.',action:'Cuando el base cierra, pregunta: "Is there flexibility in other areas of the offer?"'},
+  ];
+  document.getElementById('m4-content').innerHTML = errors.map(e=>`<div class="error-card"><div class="error-num">${e.num}</div><div class="error-title">${e.title}</div><div class="error-body">${e.body}</div><div class="action-box"><div class="action-box-label">Acción inmediata</div><p>${e.action}</p></div></div>`).join('');
+}
+
+// ============================================================
+// M5
+// ============================================================
+const allScripts=[
+  {title:'Responder salary expectations',cat:'oferta',when:'Cuando el reclutador pregunta "What are your salary expectations?" en la primera llamada',why:'Inviertes la pregunta primero. Si insisten, anclas en mercado con un rango.',tone:'Seguro, bien informado, sin desesperación',avoids:'Dar tu mínimo sin saber el presupuesto',text:'"I\'d love to learn more about the full scope of the role first. Could you share the salary band or the range budgeted for this position? If it helps, based on my research for this level in [city], I\'m targeting somewhere in the $X-$Y range."'},
+  {title:'Pedir tiempo para revisar',cat:'oferta',when:'En el momento en que te hacen la oferta',why:'Pedir tiempo es profesional. Nunca decidas en el momento.',tone:'Agradecido y entusiasta, no indeciso',avoids:'Parecer que no tienes interés',text:'"Thank you so much, I\'m really excited about this. I\'d like to take 24 to 48 hours to review the offer carefully. Would [day] work for me to get back to you?"'},
+  {title:'Preguntar por el salary band',cat:'oferta',when:'Antes de dar tu número',why:'Saber el band te dice si negociar base tiene sentido o si el conversation debe ir a otras áreas.',tone:'Directo y profesional',avoids:'Dar tu número sin saber si ya estás en el techo del rango',text:'"Before we discuss numbers, could you share the salary band for this role? I want to make sure we\'re having a productive conversation."'},
+  {title:'Hacer counteroffer',cat:'counter',when:'Cuando recibes una oferta y el número está bajo tu target',why:'Agradeces primero, anclas en mercado, das un número concreto.',tone:'Entusiasta pero firme. No apologético.',avoids:'Sonar como si el número fuera personal o emocional',text:'"Thank you so much for the offer, I\'m genuinely excited about this role. After reviewing everything carefully, I was hoping we could get to $[X]. Based on my experience and the market rate for this level in [province], I believe that reflects my value. Is that something we can explore?"'},
+  {title:'Pedir signing bonus',cat:'counter',when:'Cuando el base no tiene flexibilidad',why:'El signing bonus sale de un presupuesto diferente. Con frecuencia hay más margen ahí.',tone:'Estratégico, no desesperado',avoids:'Aceptar "no hay flexibilidad" como el fin de la conversación',text:'"I understand the base may be fixed at this level. Would there be room for a signing bonus that helps bridge the gap? I\'m very committed to making this role work."'},
+  {title:'Cuando dicen que no hay flexibilidad en base',cat:'counter',when:'Cuando el reclutador dice "the salary is fixed"',why:'Hay más elementos negociables que el base.',tone:'Calmado, curioso, no confrontacional',avoids:'Aceptar en ese momento',text:'"I appreciate the transparency. Is there flexibility in other areas of the offer? I\'d love to explore options like additional vacation days, a signing bonus, an earlier performance review, or remote flexibility."'},
+  {title:'Negociar aumento interno por scope expandido',cat:'interno',when:'Cuando tu rol cambió significativamente y no has recibido ajuste salarial',why:'El caso más fuerte para un aumento es cuando el scope ya cambió, no solo cuando quieres más.',tone:'Orientado a datos, no emocional',avoids:'Pedir aumento basado solo en tiempo o inflación',text:'"I\'d love to schedule time to discuss my compensation. Over the past [X months], my responsibilities have expanded significantly, specifically [list 2-3 examples]. Based on market data for this level, I was thinking something in the range of $[X]. Can we find time this week?"'},
+  {title:'Pedir feedback que lleve a aumento',cat:'interno',when:'Antes de pedir un aumento, para construir el caso con tu manager',why:'En Canadá pedir feedback primero muestra madurez profesional y te da información para anclar la conversación de compensación.',tone:'Curioso, orientado a crecimiento, no ansioso',avoids:'Pedir aumento sin saber cómo te percibe tu manager',text:'"I\'d love to set up some time to get your feedback on my performance so far. I want to make sure I\'m aligned with what success looks like in this role, and I\'d also love to talk about what a path forward looks like for me here."'},
+  {title:'Iniciar conversación de promoción',cat:'interno',when:'Cuando quieres ser consideradx para un nivel superior en el próximo ciclo',why:'Plantarlo con anticipación te posiciona antes de que las decisiones ya estén tomadas.',tone:'Ambicioso pero colaborativo',avoids:'Pedir promoción sin haber conversado antes sobre los criterios',text:'"I\'ve really been enjoying taking on more responsibility and I\'d love to talk about what it would take to be considered for [next level/title] in the next review cycle. What criteria are most important from your perspective?"'},
+  {title:'Follow-up después de feedback positivo',cat:'interno',when:'Tu manager te dio feedback excelente pero no hay movimiento en compensación',why:'Conecta el reconocimiento verbal con la conversación de compensación de forma natural.',tone:'Directo pero no confrontacional',avoids:'Esperar pasivamente a que el reconocimiento se convierta en aumento solo',text:'"Thank you for that feedback, it means a lot. I\'d love to build on that momentum. Given the impact you described, I\'d like to revisit my compensation to make sure it reflects where I\'m operating. Is that a conversation we can have in the next few weeks?"'},
+  {title:'Cuando te dicen que esperes al ciclo anual',cat:'interno',when:'Te dicen que no es el momento pero el ciclo anual es en 6 meses',why:'Establece expectativas concretas para no ser ignoradx cuando llegue el momento.',tone:'Paciente pero con estructura',avoids:'Aceptar "espera" sin fijar próximos pasos concretos',text:'"I completely understand the timing. I want to make sure I\'m set up well for the annual review. Could we agree on the specific outcomes you\'d want to see between now and then that would support moving my compensation forward?"'},
+  {title:'Rechazar una oferta',cat:'rechazo',when:'Cuando decides no aceptar',why:'El mercado es pequeño. Esa persona puede ser tu contacto en el futuro.',tone:'Agradecido, claro, sin sobre-explicaciones',avoids:'Quemar un puente',text:'"Thank you so much for the offer and for the time you invested in this process. After careful consideration, I\'ve decided to move in a different direction. I have great respect for [company] and I hope our paths cross again."'},
+  {title:'Aceptar una oferta',cat:'rechazo',when:'Cuando decides aceptar',why:'Confirmar por escrito los términos protege lo que negociaste.',tone:'Entusiasta y profesional',avoids:'Aceptar verbalmente sin confirmación escrita',text:'"I\'m thrilled to accept the offer. To confirm: the role is [title] with a base of $[X], [Y] vacation days, [Z] signing bonus, and a 90-day probation period. Please send the formal offer letter and I\'ll sign and return it by [date]."'},
+];
+
+let scriptCat='all';
+function renderM5(cat) {
+  scriptCat = cat||'all';
+  const cats=[{v:'all',l:'Todos'},{v:'oferta',l:'Oferta inicial'},{v:'counter',l:'Counteroffer'},{v:'interno',l:'Aumento interno'},{v:'rechazo',l:'Rechazar / aceptar'}];
+  document.getElementById('script-filters').innerHTML = cats.map(c=>`<button class="filter-btn${scriptCat===c.v?' active':''}" onclick="filterScripts('${c.v}')">${c.l}</button>`).join('');
+  renderScriptsList();
+}
+function filterScripts(cat) {
+  scriptCat=cat;
+  document.querySelectorAll('#script-filters .filter-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderScriptsList();
+}
+function renderScriptsList() {
+  const filtered = scriptCat==='all' ? allScripts : allScripts.filter(s=>s.cat===scriptCat);
+  document.getElementById('m5-content').innerHTML = filtered.map(s=>`
+    <div class="script-box">
+      <div class="script-head"><div class="script-title">${s.title}</div><span class="badge badge-amber">${s.cat}</span></div>
+      <div class="script-body">
+        <div class="script-meta">
+          <div class="script-meta-row"><strong>Cuándo usarlo</strong>${s.when}</div>
+          <div class="script-meta-row"><strong>Tono</strong>${s.tone}</div>
+          <div class="script-meta-row"><strong>Qué evita</strong>${s.avoids}</div>
+          <div class="script-meta-row"><strong>Por qué funciona en Canadá</strong>${s.why}</div>
+        </div>
+        <div class="script-text">${s.text}</div>
+      </div>
+    </div>`).join('');
+}
+
+// ============================================================
+// M6
+// ============================================================
+function renderM6() {
+  if (document.getElementById('m6-content').innerHTML !== '') return;
+  var glossaryGeneral = [
+    {term:'Gross Pay',def:'Tu salario antes de impuestos y deducciones. Es el número que aparece en la oferta. No es lo que recibes.'},
+    {term:'Net Pay',def:'Lo que realmente llega a tu cuenta después de impuestos, CPP, EI y otras deducciones. Puede ser 20-30% menos que el gross según provincia.'},
+    {term:'Salary Band',def:'El rango salarial interno que una empresa asigna a cada nivel de rol. Tiene un mínimo, un midpoint y un máximo. Si estás en el máximo, negociar base es difícil.'},
+    {term:'Signing Bonus',def:'Pago único al comenzar. No es salario recurrente. Muchos tienen claw-back: si te vas antes de cierta fecha debes devolver parte o todo.'},
+    {term:'RRSP Matching',def:'El empleador aporta un porcentaje de lo que tú contribuyes a tu RRSP. Por ejemplo, "50% match hasta 6%" significa que si aportas 6%, el empleador agrega 3%. Es dinero real.'},
+    {term:'Benefits',def:'Paquete que puede incluir plan de salud, dental, visión, seguro de vida, EAP. El valor real varía enormemente según el plan específico.'},
+    {term:'T4',def:'El equivalente canadiense a la declaración de ingresos que te entrega el empleador cada año. Lo necesitas para tu tax return antes del último día de febrero.'},
+    {term:'Bi-weekly',def:'Pagos cada dos semanas. 26 pagos al año. En bi-weekly, dos meses al año recibes 3 pagos, importante para planificar tu presupuesto.'},
+    {term:'Semi-monthly',def:'Pagos dos veces al mes (días 15 y último día). 24 pagos al año. Más predecible que bi-weekly para planificar gastos fijos.'},
+    {term:'Base Salary',def:'El componente fijo de tu compensación. No incluye bonus ni comisiones. Es el número sobre el que se calculan RRSP match, overtime y aumentos.'},
+    {term:'Total Compensation',def:'Base + bonus + RRSP match + valor de benefits + vacaciones. Siempre compara total compensation, no solo base.'},
+    {term:'Probation Period',def:'Período inicial (3-6 meses) con menor protección laboral. Algunos beneficios no aplican hasta después.'},
+    {term:'Annual Review',def:'Revisión formal de performance una vez al año. Generalmente conectada a la posibilidad de aumento. Pide claridad sobre cuándo es y cuáles son los criterios.'},
+    {term:'Cost of Living',def:'El costo de vivir en una ciudad específica. $70k en Halifax no equivale a $70k en Toronto. Herramientas como Numbeo pueden ayudarte a comparar.'},
+    {term:'Promotion Cycle',def:'El ritmo con el que una empresa promueve a su gente. Puede ser anual o basado en performance.'},
+  ];
+
+  var glossaryPublic = [
+    {term:'Salary Grid / Salary Scale',def:'Tabla oficial de salarios del sector público organizada por classification y steps. Es pública y aplicable a todos en ese nivel. No se negocia el número, se negocia en qué punto de la tabla entras.'},
+    {term:'Classification',def:'El código o categoría que define el nivel y tipo de trabajo en el sector público. Por ejemplo, EC-04, AS-05, IT-03. Cada classification tiene su propio salary grid. Antes de aceptar una oferta, verifica que la classification corresponda al trabajo real que harás.'},
+    {term:'Step / Increment',def:'Cada escalón dentro del salary grid de una classification. Normalmente subes un step automáticamente cada año hasta llegar al máximo. El punto de entrada depende de tu experiencia y puede negociarse.'},
+    {term:'Collective Agreement',def:'El convenio colectivo que rige las condiciones laborales de los empleados públicos sindicalizados. Define salarios, beneficios, horas, vacaciones y procedimientos de grievance. Es público y debes leerlo antes de firmar.'},
+    {term:'Defined Benefit Pension (DB)',def:'Plan de pensión donde el empleador garantiza un ingreso fijo al retiro basado en años de servicio y salario. Es el tipo de pensión más sólido y común en el sector público canadiense. Mucho más valioso que un Defined Contribution plan.'},
+    {term:'Defined Contribution Pension (DC)',def:'Plan de pensión donde tú y el empleador aportan, pero el monto al retiro depende del rendimiento de las inversiones. Más común en el sector privado. Menos predecible que un DB pension.'},
+    {term:'Indeterminate Position',def:'Posición permanente en el sector público federal canadiense. El equivalente a un trabajo de planta. Tiene mayor protección laboral y acceso completo a beneficios.'},
+    {term:'Term Position',def:'Posición temporal en el sector público con una fecha de fin establecida. Puede renovarse pero no garantiza permanencia. Los beneficios pueden ser limitados dependiendo de la duración.'},
+    {term:'Acting Assignment',def:'Cuando se te asigna temporalmente a un rol de nivel superior al tuyo. Generalmente tienes derecho a la paga de ese nivel superior mientras dure la asignación. Es una forma común de ganar experiencia en el sector público.'},
+    {term:'NOC Code',def:'National Occupational Classification. El código que clasifica tu ocupación según el gobierno de Canadá. Relevante para entender salary benchmarks por Job Bank Canada y para procesos de inmigración.'},
+    {term:'Pay Equity',def:'Principio legal en Canadá que exige igual pago por trabajo de igual valor, independientemente del género. En el sector público federal está legislado. Si crees que tu classification no refleja el valor real de tu trabajo, es un concepto relevante.'},
+    {term:'Grievance',def:'Queja formal presentada por un empleado o sindicato cuando se viola el collective agreement. Es un mecanismo de protección en el sector público. No es confrontacional en el contexto canadiense, es un proceso estructurado.'},
+  ];
+
+  var makeItem = function(g) {
+    return '<div class="gloss-item"><div class="gloss-term">' + g.term + '</div><div class="gloss-def">' + g.def + '</div></div>';
+  };
+
+  var sectionHeader = function(title) {
+    return '<div style="padding:20px 0 10px;border-bottom:2px solid var(--red);margin-bottom:4px;">'
+      + '<div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.1em;">' + title + '</div>'
+      + '</div>';
+  };
+
+  document.getElementById('m6-content').innerHTML =
+    sectionHeader('General')
+    + glossaryGeneral.map(makeItem).join('')
+    + sectionHeader('Sector público')
+    + glossaryPublic.map(makeItem).join('');
+}
+
+// ============================================================
+// M7
+// ============================================================
+function renderM7() {
+  if (document.getElementById('m7-content').innerHTML !== '') return;
+  const qs=['¿Está el salario en el rango de mercado para esta provincia, industria y nivel?','¿Calculé el total compensation real (base + benefits + RRSP + vacaciones)?','¿Sé cuándo es la próxima revisión de performance y cuáles son los criterios?','¿Leí el plan de benefits completo y sé exactamente qué cubre?','¿El título refleja el nivel real de responsabilidad que voy a tener?','¿Si en 18 meses quiero salir de esta empresa, este rol me posiciona mejor?','¿Ya pregunté si hay flexibilidad en base, vacation, signing o cualquier otro elemento?'];
+  document.getElementById('m7-content').innerHTML = `
+    <div class="card"><div class="card-title">Preguntas clave antes de responder</div>${qs.map((q,i)=>`<div style="display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--border);"><span style="font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--red);min-width:34px;">${String(i+1).padStart(2,'0')}</span><span style="font-size:16px;color:var(--muted);line-height:1.65;">${q}</span></div>`).join('')}</div>
+    <div class="grid-2" style="margin-bottom:24px;">
+      <div class="signal-card green"><div class="signal-card-title">Señales para aceptar</div><ul class="signal-list"><li data-icon="✓">El salario está en la parte media o alta del rango</li><li data-icon="✓">Ya negociaste y llegaron a un punto razonable</li><li data-icon="✓">Los benefits compensan un base ligeramente menor</li><li data-icon="✓">El rol abre puertas concretas en 12-18 meses</li><li data-icon="✓">Tienes claridad sobre próxima revisión y criterios</li></ul></div>
+      <div class="signal-card red"><div class="signal-card-title">Señales de precaución</div><ul class="signal-list"><li data-icon="⚠">No pudiste negociar nada en ningún elemento</li><li data-icon="⚠">Te presionan para decidir en menos de 24 horas</li><li data-icon="⚠">El salario está en la parte baja sin justificación</li><li data-icon="⚠">Los benefits son vagos y no tienes el plan completo</li><li data-icon="⚠">Tu instinto dice que algo no cuadra</li></ul></div>
+    </div>
+    <div class="card"><div class="card-title">Árbol de decisión</div>
+      <div class="decision-q"><div class="decision-q-text">¿El salario ofrecido está dentro del rango de mercado para este rol y provincia?</div><div class="decision-opts"><div class="decision-opt yes">Sí, está en rango</div><div class="decision-opt no">No, está bajo del rango</div></div></div>
+      <div class="decision-q"><div class="decision-q-text">¿El total compensation cubre lo que necesitas y mereces?</div><div class="decision-opts"><div class="decision-opt yes">Sí, el paquete es sólido</div><div class="decision-opt no">No del todo</div></div></div>
+      <div class="decision-q"><div class="decision-q-text">¿Ya hiciste un counteroffer o pediste flexibilidad?</div><div class="decision-opts"><div class="decision-opt yes">Sí, no hubo margen</div><div class="decision-opt no">No todavía, hazlo primero</div></div></div>
+      <div style="background:var(--red-light);border:1px solid var(--red-border);border-radius:12px;padding:20px 24px;margin-top:12px;"><div style="font-size:10px;font-weight:800;color:var(--red);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Si ya negociaste y no hay margen</div><p style="font-size:15px;color:#9a2020;line-height:1.7;margin:0;">Evalúa si el aprendizaje y el contexto del rol justifican el diferencial. Si en 18 meses este rol no te posiciona mejor en el mercado, puede no valer la diferencia salarial.</p></div>
+    </div>
+    <div class="action-box"><div class="action-box-label">Próximos pasos</div><p><strong>Si aceptas:</strong> confirma por escrito los términos antes de tu primer día. <strong>Si rechazas:</strong> hazlo con gratitud y brevedad. <strong>Si sigues negociando:</strong> pon un límite de tiempo para no perder otras oportunidades.</p></div>`;
+}
+
+// ============================================================
+// M8 EMPLEADO VS CONTRACTOR
+// ============================================================
+function renderM8() {
+  if (document.getElementById('m8-content').innerHTML !== '') return;
+  document.getElementById('m8-content').innerHTML = `
+    <div class="card">
+      <div class="card-title">Las diferencias clave</div>
+      <div class="compare-row">
+        <div class="cmp-side">
+          <div class="cmp-side-label" style="color:#1d4ed8;">Empleado (T4 Employee)</div>
+          <ul style="list-style:none;font-size:15px;color:var(--muted);">
+            ${['El empleador retiene CPP, EI e income tax automáticamente','Recibes un T4 al final del año','Tienes acceso a EI si te despiden','El empleador paga su parte de CPP y EI','Proteges tus derechos laborales provinciales','Tienes derecho a vacation pay y statutory holidays'].map(i=>`<li style="padding:9px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;"><span style="color:#1d4ed8;flex-shrink:0;">✓</span>${i}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="cmp-side right">
+          <div class="cmp-side-label" style="color:var(--amber);">Contractor (Self-Employed)</div>
+          <ul style="list-style:none;font-size:15px;color:var(--muted);">
+            ${['Tú pagas todos tus impuestos directamente','Recibes un T4A o simplemente facturas','No tienes acceso a EI (en la mayoría de casos)','Pagas el 100% de CPP (empleado + empleador)','No tienes protecciones laborales provinicales automáticas','Debes apartar dinero para impuestos cada quincena'].map(i=>`<li style="padding:9px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;"><span style="color:var(--amber);flex-shrink:0;">⚠</span>${i}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">¿Cuánto más necesitas ganar como contractor?</div>
+      <p style="font-size:15px;color:var(--muted);margin-bottom:22px;">Si una empresa te ofrece trabajo como contractor, el número del contrato no es equivalente a un salario de empleado. Necesitas compensar lo que el empleador normalmente cubriría.</p>
+      <div class="grid-3">
+        <div class="stat-card" style="border-top:3px solid var(--red);"><div class="stat-num" style="font-size:26px;">~$9k</div><div class="stat-label">Extra en CPP que pagas tú (en $80k)</div></div>
+        <div class="stat-card" style="border-top:3px solid var(--amber);"><div class="stat-num" style="font-size:26px;">0</div><div class="stat-label">Acceso a EI si pierdes el contrato</div></div>
+        <div class="stat-card" style="border-top:3px solid var(--green);"><div class="stat-num" style="font-size:26px;">+20%</div><div class="stat-label">Mínimo adicional recomendado sobre salario equivalente</div></div>
+      </div>
+      <div class="action-box" style="margin-top:22px;"><div class="action-box-label">Regla práctica</div><p>Si un empleador te ofrece $80k como contractor y $80k como empleado, la oferta de empleado vale significativamente más. Como contractor necesitarías al menos $96k-$100k para tener un equivalente real.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Lo que debes preguntar antes de firmar un contrato</div>
+      <ul class="check-list">
+        ${['¿Seré T4 employee o self-employed contractor?','¿Recibiré un T4 o un T4A al final del año?','¿Tendré acceso a los benefits de la empresa?','¿Pagaré mis propios impuestos o los retienen del pago?','¿Podría calificar para EI si termina este contrato?','¿Cuál es la cláusula de terminación del contrato?','Si soy contractor, ¿puedo trabajar con otros clientes simultáneamente?'].map(i=>`<li><div class="check-box"></div><span>${i}</span></li>`).join('')}
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🚨 La trampa más común</div>
+      <div class="error-card" style="margin-bottom:0;">
+        <div class="error-title">Empresas que ofrecen "más dinero" como contractor pero realmente pagan menos</div>
+        <div class="error-body">Muchas empresas ofrecen a latinos recién llegados un contrato de contractor con un número más alto porque parece mejor. Sin EI, sin benefits, pagando doble CPP y sin protecciones laborales, ese número más alto puede resultar en significativamente menos dinero real al año.</div>
+        <div class="action-box"><div class="action-box-label">Acción inmediata</div><p>Antes de firmar cualquier contrato, pregunta explícitamente: "¿Seré un T4 employee o self-employed?" Si no saben responder eso con claridad, es una señal de alerta.</p></div>
+      </div>
+    </div>
+
+    <div class="alert alert-green"><span class="alert-icon">📖</span><span>Este módulo complementa el Capítulo 6 de la Guía de Códigos Culturales y Financieros (Derechos Laborales y EI). Si tienes dudas sobre tu estatus laboral actual, revisa ese capítulo para entender tus protecciones.</span></div>`;
+}
+
+// ============================================================
+// INDUSTRIAS COMPARISON
+// ============================================================
+function renderIndustrias(selectedInd) {
+  // Get all unique industry names across provinces
+  var indNames = [];
+  provinces.forEach(function(p) { p.industries.forEach(function(i) { if (indNames.indexOf(i.name) === -1) indNames.push(i.name); }); });
+  var allInds = indNames.sort();
+  
+  // Filter buttons
+  document.getElementById('ind-filter-row').innerHTML = allInds.map(function(ind) {
+    return '<button class="filter-btn' + (ind===selectedInd?' active':'') + '" onclick="renderIndustrias(\'' + ind + '\')">' + ind + '</button>';
+  }).join('');
+
+  // For selected industry, collect data per province
+  var rows = [];
+  provinces.forEach(function(p) {
+    var ind = null;
+    for (var x=0;x<p.industries.length;x++) { if(p.industries[x].name===selectedInd){ind=p.industries[x];break;} }
+    if (!ind) return;
+    var entry=null,specialist=null,manager=null,intermediate=null;
+    ind.levels.forEach(function(l){
+      if(l.level==='Entry') entry=l;
+      if(l.level==='Intermediate') intermediate=l;
+      if(l.level==='Specialist') specialist=l;
+      if(l.level==='Manager') manager=l;
+    });
+    rows.push({ prov: p, entry: entry, intermediate: intermediate, specialist: specialist, manager: manager });
+  });
+
+  var container = document.getElementById('ind-comparison-content');
+  if (!rows.length) {
+    container.innerHTML = '<div class="card"><p style="color:var(--muted);font-size:15px;">No hay datos para esta industria en todas las provincias.</p></div>';
+    return;
+  }
+
+  // Province cards, one card per province, rows for each level
+  var cardsHTML = rows.map(function(r) {
+    var levels = [
+      { label: 'Entry', data: r.entry, color: 'var(--muted)' },
+      { label: 'Intermediate', data: r.intermediate, color: 'var(--muted)' },
+      { label: 'Specialist', data: r.specialist, color: 'var(--amber)' },
+      { label: 'Manager', data: r.manager, color: 'var(--green)' },
+    ];
+    var rowsHTML = levels.map(function(lv) {
+      if (!lv.data) return '';
+      return '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);">'
+        + '<span style="font-size:14px;color:var(--muted);">' + lv.label + '</span>'
+        + '<span style="font-size:14px;font-weight:600;color:' + lv.color + ';">' + lv.data.low + ' a ' + lv.data.high + '</span>'
+        + '</div>';
+    }).join('');
+    return '<div style="background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:12px;">'
+      + '<div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);">'
+      + '<div style="width:36px;height:36px;border-radius:50%;background:' + r.prov.color + ';display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;">' + r.prov.abbr + '</div>'
+      + '<span style="font-size:16px;font-weight:700;color:var(--text);">' + r.prov.name + '</span>'
+      + '</div>'
+      + '<div style="padding:4px 20px 12px;">' + rowsHTML + '</div>'
+      + '</div>';
+  }).join('');
+
+  container.innerHTML = '<div style="margin-bottom:16px;">'
+    + '<div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:4px;">' + selectedInd + '</div>'
+    + '<div style="font-size:14px;color:var(--muted);">Rangos por provincia y nivel</div>'
+    + '</div>'
+    + cardsHTML
+    + '<div class="alert alert-warn" style="margin-top:8px;">'
+    + '<span class="alert-icon">⚠️</span>'
+    + '<span>Datos orientativos 2025-2026. Varían por ciudad, empresa y experiencia.</span>'
+    + '</div>';
+}
+
+// ============================================================
+// GLOBAL EVENTS
+// ============================================================
+document.addEventListener('click', function(e) {
+  const h = e.target.closest('.acc-head');
+  if (h) h.closest('.acc').classList.toggle('open');
+  const cb = e.target.closest('.check-box');
+  if (cb) { cb.classList.toggle('checked'); cb.textContent = cb.classList.contains('checked') ? '✓' : ''; }
+});
+
+// ============================================================
+// M9: PREGUNTAS REALES
+// ============================================================
+function renderM9() {
+  if (document.getElementById('m9-content').innerHTML !== '') return;
+
+  var preguntas = [
+    {
+      q: '¿Cuánto puedo pedir? No sé si mi expectativa es realista en Canadá.',
+      a: 'Esta es la duda más común y la más costosa cuando no se responde antes de negociar. En Canadá los salarios varían mucho por provincia, industria y nivel de experiencia. No es lo mismo pedir en Ontario que en Nova Scotia, ni en Tech que en Administration. El Dashboard de provincias de este mismo recurso tiene los rangos reales por provincia, industria y nivel (Entry, Intermediate, Specialist, Manager). Antes de cualquier conversación de salario, revisa ese módulo para tu provincia y tu industria. Eso te da un ancla real, no una suposición.',
+      tag: 'Rangos salariales',
+      tagColor: '#e8f0fe', tagText: '#1d4ed8',
+      link: true,
+      linkLabel: 'Ver Dashboard de provincias',
+      linkAction: "navTo('dashboard','dashboard')"
+    },
+    {
+      q: '¿Cuánto me va a quedar después de taxes?',
+      quien: 'Tu audiencia, repetida muchas veces',
+      a: 'Esa es exactamente la pregunta correcta, y muy pocas personas la hacen antes de aceptar. En Canadá el gross (lo que dice la oferta) puede estar 20-30% por encima de lo que realmente llega a tu cuenta, dependiendo de la provincia. Ontario y Quebec tienen las tasas más altas. Alberta no tiene impuesto provincial. La calculadora en cada provincia de este dashboard te da el desglose real: EI, CPP, federal tax, provincial tax, y tu net pay por mes y quincena.',
+      tag: 'Calculadora',
+      tagColor: '#e8f0fe', tagText: '#1d4ed8'
+    },
+    {
+      q: '¿Qué más puedo negociar además del salario?',
+      quien: 'lavilla88 y muchos más',
+      a: 'Mucho más de lo que crees. Cuando te digan que el base es fijo, la conversación no termina ahí. Puedes negociar: días de vacaciones extra (cada semana vale ~$1,500 en un salario de $80k), signing bonus (sale de un presupuesto diferente al de salario), fecha de revisión anticipada (a los 6 meses en vez de 12), trabajo híbrido o remoto, título, y en algunos casos el porcentaje de RRSP match. El módulo de Scripts tiene exactamente qué decir en cada uno de estos casos.',
+      tag: 'Negociación',
+      tagColor: '#d1fae5', tagText: '#065f46'
+    },
+    {
+      q: '¿Cómo sé si soy apta para pedir un aumento?',
+      quien: 'vivi_mainguez',
+      a: 'Tres señales concretas de que el momento es ahora: tu scope cambió y estás haciendo más de lo que dice tu job description, tu salario está por debajo del rango de mercado actual para tu nivel y provincia (compara en el dashboard), o llevas más de 12 meses sin revisión salarial real. No esperes a que te lo ofrezcan. En Canadá el sistema no recompensa pasividad. El módulo de Scripts internos tiene la conversación exacta para iniciar ese proceso con tu manager.',
+      tag: 'Aumento interno',
+      tagColor: '#fef3c7', tagText: '#92400e'
+    },
+    {
+      q: '¿Hay diferencias de negociación en el sector público?',
+      quien: 'lavilla88',
+      a: 'Sí, y son importantes. En el sector público canadiense los salarios suelen estar en grids sindicales o salary scales publicadas, lo que significa que hay menos margen para negociar el base directamente. Lo que sí puedes negociar: el nivel o step dentro del grid al que entras (basado en experiencia), el título con el que empiezas, beneficios adicionales, y en algunos casos flexibilidad de horario. Lo más importante es entender en qué step del grid calificas antes de la oferta, no después.',
+      tag: 'Sector público',
+      tagColor: '#ede9fe', tagText: '#5b21b6'
+    },
+    {
+      q: 'Cuando pido lo mínimo de la oferta por no tener experiencia canadiense, ¿estoy dando un mensaje negativo?',
+      quien: 'johaacabc',
+      a: 'Depende de cómo lo presentas. Pedir el mínimo no es el problema. El problema es hacerlo sin ancla. Si pides $X "porque es lo que creo que merezco sin experiencia local", eso sí debilita tu posición. Si pides $X porque "es el rango de mercado para entry level en esta provincia y este sector", eso es una negociación informada. La experiencia canadiense no es el único criterio que cuenta. Tu experiencia total, tus habilidades y el mercado también pesan. No te descuentes antes de que lo hagan ellos.',
+      tag: 'Mentalidad',
+      tagColor: '#fce7f3', tagText: '#9d174d'
+    },
+    {
+      q: '¿Qué pasa si me dicen que no hay margen para negociar pero sí hay bonus por rendimiento?',
+      quien: 'even_13',
+      a: 'Eso es información útil, no un cierre. Cuando el base es fijo pero hay bonus, la conversación cambia a: ¿cuál fue el porcentaje de bonus real pagado en los últimos 2 años? ¿Es discrecional o tiene criterios claros? ¿Cuándo se evalúa? Un bonus prometido sin criterios claros no es compensación, es una esperanza. Pide los detalles antes de aceptar.',
+      tag: 'Oferta',
+      tagColor: '#ecfdf5', tagText: '#065f46'
+    },
+    {
+      q: '¿No pregunté sobre vacaciones ni liquidación al recibir la oferta. ¿Qué hago?',
+      quien: 'okanagankelowna25',
+      a: 'Si todavía no has firmado, puedes preguntar ahora. No es tarde. Di: "Before I sign, I want to make sure I understand the full package. Could you confirm the vacation entitlement and termination notice period?" Si ya firmaste, revisa tu contrato y el employee handbook. En Canadá los mínimos de vacaciones y aviso de terminación están regulados por provincia, así que tienes derechos mínimos independientemente de lo que diga el contrato.',
+      tag: 'Oferta',
+      tagColor: '#ecfdf5', tagText: '#065f46'
+    },
+    {
+      q: '¿Por qué es tan tabú hablar de salarios en Canadá?',
+      quien: 'maribi82',
+      a: 'No es tabú hablar de salarios, es incómodo culturalmente, y hay una diferencia. En Canadá muchas empresas prefieren que no sepas lo que ganan tus colegas porque esa información les daría menos poder de negociación. Pero legalmente, en la mayoría de las provincias canadienses no pueden prohibirte discutir tu salario con compañeros. Es un derecho protegido. El silencio no es neutralidad. Es una ventaja para el empleador.',
+      tag: 'Cultura',
+      tagColor: '#f1f5f9', tagText: '#475569'
+    },
+    {
+      q: '¿Cómo negocio si el inglés no es mi primer idioma?',
+      quien: 'denisdiaz58',
+      a: 'Exactamente para eso están los scripts de este dashboard. No tienes que improvisar. Tienes las frases exactas, el tono exacto y el momento exacto para usarlas. El inglés de negociación no es el inglés conversacional: es un set de frases específicas que puedes aprender, practicar y usar con confianza. La ventaja que tienes es que nadie espera fluidez perfecta. Lo que sí esperan es claridad y firmeza, y eso lo puedes lograr con preparación.',
+      tag: 'Idioma',
+      tagColor: '#fff7ed', tagText: '#9a3412'
+    },
+  ];
+
+  var html = preguntas.map(function(p, i) {
+    return '<div class="acc' + (i===0?' open':'') + '" style="margin-bottom:12px;">'
+      + '<div class="acc-head">'
+      + '<div style="display:flex;flex-direction:column;gap:6px;flex:1;">'
+      + ''
+      + '<h3>' + p.q + '</h3>'
+      + '</div>'
+      + '<div class="acc-icon">+</div>'
+      + '</div>'
+      + '<div class="acc-body">'
+      + '<div class="acc-content">'
+      + '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">'
+      + '<span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:5px;background:' + p.tagColor + ';color:' + p.tagText + ';">' + p.tag + '</span>'
+      + '</div>'
+      + '<p style="font-size:15px;line-height:1.75;color:var(--muted);">' + p.a + '</p>'
+      + (p.link ? '<div style="margin-top:18px;"><button onclick="' + p.linkAction + ';closeSidebar();" style="font-size:13px;font-weight:700;padding:10px 20px;border-radius:9px;background:var(--red);color:#fff;border:none;cursor:pointer;font-family:var(--font-body);">' + p.linkLabel + ' →</button></div>' : '')
+      + '</div>'
+      + '</div>'
+      + '</div>';
+  }).join('');
+
+  document.getElementById('m9-content').innerHTML = html;
+}
+
+// ============================================================
+// M10: SECTOR PÚBLICO
+// ============================================================
+function renderM10() {
+  if (document.getElementById('m10-content').innerHTML !== '') return;
+
+  var html = '';
+
+  // INTRO CARD
+  html += '<div class="card">'
+    + '<div class="card-title">¿Por qué es diferente negociar en el sector público?</div>'
+    + '<p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:16px;">En el sector privado, el salario es una negociación. En el sector público canadiense, el salario es una estructura. Los sueldos están organizados en salary grids o salary scales publicadas, divididas en niveles (classifications) y pasos (steps o increments). Eso cambia completamente qué puedes negociar y qué no.</p>'
+    + '<div class="action-box"><div class="action-box-label">Lo que esto significa en la práctica</div><p>No puedes negociar fuera del grid. Lo que sí puedes negociar es en qué punto del grid entras, y eso puede valer miles de dólares al año.</p></div>'
+    + '</div>';
+
+  // COMPARADOR
+  html += '<div class="card">'
+    + '<div class="card-title">Sector privado vs sector público</div>'
+    + '<div class="compare-row">'
+    + '<div class="cmp-side"><div class="cmp-side-label cmp-label-bad">Sector privado</div>'
+    + '<ul style="list-style:none;font-size:15px;color:var(--muted);">'
+    + ['Salario negociable dentro de un band interno','El número puede moverse según tu negociación','Signing bonus, equity y perks son comunes','Poca transparencia en lo que ganan tus colegas','Aumentos basados en performance y negociación'].map(function(i){ return '<li style="padding:9px 0;border-bottom:1px solid var(--border);">'+i+'</li>'; }).join('')
+    + '</ul></div>'
+    + '<div class="cmp-side right"><div class="cmp-side-label cmp-label-good">Sector público</div>'
+    + '<ul style="list-style:none;font-size:15px;color:var(--muted);">'
+    + ['Salary grid publicado y accesible para todos','El número del grid es fijo, no negociable directamente','Beneficios de pensión definida (DB pension) muy sólidos','Salarios de colegas en el mismo nivel son iguales','Aumentos automáticos por step dentro del grid'].map(function(i){ return '<li style="padding:9px 0;border-bottom:1px solid var(--border);">'+i+'</li>'; }).join('')
+    + '</ul></div></div>'
+    + '</div>';
+
+  // QUÉ SÍ SE PUEDE NEGOCIAR
+  var negociable = [
+    { titulo: 'El step o nivel de entrada', desc: 'Si tienes más experiencia de la requerida para el nivel mínimo, puedes pedir entrar en un step más alto del grid. Esto puede significar $3,000-$8,000 más al año desde el primer día. Necesitas documentar tu experiencia y justificar por qué calificas para un step superior.' },
+    { titulo: 'La classification del rol', desc: 'A veces el mismo trabajo puede clasificarse en diferentes niveles. Si crees que el rol que harás corresponde a una classification más alta, puedes cuestionarlo antes de aceptar. Esto requiere conocer las clasificaciones del empleador específico.' },
+    { titulo: 'La fecha de inicio', desc: 'Más flexible que en el privado. En el sector público es común que los procesos tomen tiempo y la fecha puede negociarse con más margen.' },
+    { titulo: 'El trabajo remoto o híbrido', desc: 'Especialmente post-pandemia, muchas entidades públicas federales y provinciales tienen políticas de trabajo híbrido. Puedes preguntar por la política y en algunos casos negociar tu arreglo específico.' },
+    { titulo: 'El reconocimiento de experiencia previa', desc: 'Algunos empleadores públicos permiten reconocer años de servicio previo para efectos de vacaciones o beneficios. Vale la pena preguntar explícitamente si tu experiencia anterior puede acreditarse.' },
+  ];
+
+  html += '<div class="card"><div class="card-title">¿Qué sí puedes negociar en el sector público?</div>'
+    + negociable.map(function(n, i) {
+        return '<div class="acc' + (i===0?' open':'') + '">'
+          + '<div class="acc-head"><h3>' + n.titulo + '</h3><div class="acc-icon">+</div></div>'
+          + '<div class="acc-body"><div class="acc-content">' + n.desc + '</div></div>'
+          + '</div>';
+      }).join('')
+    + '</div>';
+
+  // PENSION
+  html += '<div class="card" style="border-top:3px solid var(--green);">'
+    + '<div class="card-title">El beneficio que más se ignora: la pensión</div>'
+    + '<p style="font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:20px;">El sector público federal y la mayoría de los provinciales ofrecen una pensión de beneficio definido (Defined Benefit Pension). Esto significa que al retirarte recibes un ingreso garantizado basado en tus años de servicio y salario, no en lo que rindió el mercado.</p>'
+    + '<div class="grid-3">'
+    + '<div class="stat-card" style="border-top:3px solid var(--green);"><div class="stat-num" style="font-size:24px;color:var(--green);">DB</div><div class="stat-label">Defined Benefit: ingreso garantizado al retiro</div></div>'
+    + '<div class="stat-card"><div class="stat-num" style="font-size:24px;">~2%</div><div class="stat-label">Por año de servicio sobre el salario promedio</div></div>'
+    + '<div class="stat-card"><div class="stat-num" style="font-size:24px;">$$$</div><div class="stat-label">Valor equivalente a $200k-$400k en RRSP privado</div></div>'
+    + '</div>'
+    + '<div class="action-box" style="margin-top:20px;"><div class="action-box-label">Antes de comparar salarios</div><p>Si comparas un salario del sector público con uno del privado, agrega mentalmente el valor de la pensión. Un trabajo público con $10k menos al año puede valer más en total compensation si incluye DB pension.</p></div>'
+    + '</div>';
+
+  // SCRIPTS
+  html += '<div class="card"><div class="card-title">Scripts para sector público</div>'
+    + '<div class="script-box">'
+    + '<div class="script-head"><div class="script-title">Pedir un step más alto al entrar</div><span class="badge badge-amber">Entrada</span></div>'
+    + '<div class="script-body">'
+    + '<div class="script-meta">'
+    + '<div class="script-meta-row"><strong>Cuándo usarlo</strong>Cuando recibes una oferta en el step mínimo del grid pero tienes más experiencia</div>'
+    + '<div class="script-meta-row"><strong>Tono</strong>Fundamentado en experiencia, no en preferencia personal</div>'
+    + '</div>'
+    + '<div class="script-text">"Thank you for the offer. I would like to discuss the starting step. Based on my [X years] of directly relevant experience in [specific area], I believe I qualify for a higher step within the [classification] grid. Would it be possible to review my placement at step [X] instead?"</div>'
+    + '</div></div>'
+    + '<div class="script-box" style="margin-top:16px;">'
+    + '<div class="script-head"><div class="script-title">Preguntar por reconocimiento de experiencia previa</div><span class="badge badge-amber">Beneficios</span></div>'
+    + '<div class="script-body">'
+    + '<div class="script-meta">'
+    + '<div class="script-meta-row"><strong>Cuándo usarlo</strong>Antes de firmar, para entender si tu experiencia previa cuenta para vacaciones u otros beneficios</div>'
+    + '<div class="script-meta-row"><strong>Tono</strong>Curioso y profesional</div>'
+    + '</div>'
+    + '<div class="script-text">"I wanted to ask whether my previous experience can be recognized for vacation entitlement or other service-based benefits. Is that something the organization considers?"</div>'
+    + '</div></div>'
+    + '</div>';
+
+  // WARNING
+  html += '<div class="alert alert-warn"><span class="alert-icon">⚠️</span><span>Las clasificaciones, grids y políticas varían entre el gobierno federal, los gobiernos provinciales y las entidades municipales. Siempre revisa el convenio colectivo o salary scale específico del empleador antes de negociar.</span></div>';
+
+  document.getElementById('m10-content').innerHTML = html;
+}
+
+// ============================================================
+// TOGGLE HELPERS
+// ============================================================
+function toggleInd(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+function toggleICard(id) {
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+// ============================================================
+// MOBILE SIDEBAR
+// ============================================================
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebar-overlay');
+  sb.classList.toggle('open');
+  ov.classList.toggle('open');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderNav();
+renderProvCards();
+</script>
+</body>
+</html>
